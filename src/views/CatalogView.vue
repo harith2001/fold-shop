@@ -7,6 +7,7 @@
     </p>
     <template v-else>
       <div class="catalog__toolbar">
+        <SearchInput v-model="query" />
         <div class="catalog__chips">
           <button
             type="button"
@@ -51,6 +52,7 @@
 import Vue from 'vue';
 import { mapGetters, mapState } from 'vuex';
 import ProductList from '@/components/ProductList.vue';
+import SearchInput from '@/components/SearchInput.vue';
 import { filterCatalog } from '@/domain/filters';
 import type { CatalogSort } from '@/domain/filters';
 import type { CurrencyCode, Product } from '@/domain/types';
@@ -60,17 +62,24 @@ const CATEGORIES: Product['category'][] = ['bags', 'lights', 'racks', 'covers'];
 export default Vue.extend({
   name: 'CatalogView',
   components: {
-    ProductList
+    ProductList,
+    SearchInput
   },
   data(): {
     category: Product['category'] | null;
     sort: CatalogSort;
     inStockOnly: boolean;
+    query: string;
+    search: string;
+    searchTimer: number | null;
   } {
     return {
       category: null,
       sort: 'catalog',
-      inStockOnly: false
+      inStockOnly: false,
+      query: '',
+      search: '',
+      searchTimer: null
     };
   },
   computed: {
@@ -89,16 +98,33 @@ export default Vue.extend({
         inStockOnly: this.inStockOnly,
         sort: this.sort,
         currency: this.$store.getters['ui/currency'] as CurrencyCode,
-        nameOf: (product) => String(this.$t(product.nameKey))
+        nameOf: (product) => String(this.$t(product.nameKey)),
+        query: this.search
       });
+    }
+  },
+  watch: {
+    query(next: string): void {
+      if (this.searchTimer != null) {
+        window.clearTimeout(this.searchTimer);
+      }
+      this.searchTimer = window.setTimeout(() => {
+        this.search = next;
+        this.searchTimer = null;
+      }, 300);
     }
   },
   created() {
     this.$store.dispatch('catalog/fetchAll');
   },
+  beforeDestroy() {
+    if (this.searchTimer != null) {
+      window.clearTimeout(this.searchTimer);
+    }
+  },
   methods: {
-    onAdd(): void {
-      // Cart wiring lands in S08 / S10. Emit path exists so ProductCard stays honest.
+    onAdd(product: Product): void {
+      this.$store.dispatch('cart/add', product);
     }
   }
 });

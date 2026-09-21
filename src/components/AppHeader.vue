@@ -7,7 +7,14 @@
       <router-link class="header__link" :to="{ name: 'catalog' }">{{
         $t('nav.catalog')
       }}</router-link>
-      <router-link class="header__link" :to="{ name: 'cart' }">{{ $t('nav.cart') }}</router-link>
+      <router-link
+        class="header__link header__cart"
+        :to="{ name: 'cart' }"
+        :aria-label="$t('cart.itemsCount', { n: itemCount })"
+      >
+        {{ $t('nav.cart') }}
+        <span class="header__badge">{{ itemCount }}</span>
+      </router-link>
       <MarketSwitcher />
     </nav>
   </header>
@@ -15,12 +22,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapGetters } from 'vuex';
 import MarketSwitcher from '@/components/MarketSwitcher.vue';
 
 export default Vue.extend({
   name: 'AppHeader',
   components: {
     MarketSwitcher
+  },
+  computed: {
+    ...mapGetters('cart', ['itemCount'])
   }
 });
 </script>
@@ -52,7 +63,25 @@ export default Vue.extend({
 
 .header__nav {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+
+.header__cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.header__badge {
+  min-width: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-paper);
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  text-align: center;
 }
 
 .header__link {

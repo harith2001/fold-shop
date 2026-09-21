@@ -7,6 +7,8 @@ import './assets/styles/main.scss';
 
 Vue.config.productionTip = false;
 
+store.dispatch('cart/restore');
+
 new Vue({
   router,
   store,

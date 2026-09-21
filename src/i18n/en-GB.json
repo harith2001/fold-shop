@@ -3,6 +3,8 @@
     "title": "Catalog",
     "empty": "No products found.",
     "loading": "Loading…",
+    "search": "Search",
+    "searchLabel": "Search products",
     "filterAll": "All",
     "sortLabel": "Sort",
     "sortCatalog": "Catalog order",
@@ -19,22 +21,57 @@
   },
   "product": {
     "addToCart": "Add to cart",
-    "outOfStock": "Out of stock"
+    "outOfStock": "Out of stock",
+    "qty": "Quantity",
+    "related": "Related products",
+    "loading": "Loading product…",
+    "empty": "Product not found.",
+    "promo": "Promo applied"
   },
   "cart": {
+    "title": "Cart",
     "empty": "Your cart is empty.",
     "remove": "Remove",
-    "itemsCount": "{n} item | {n} items"
+    "itemsCount": "{n} item | {n} items",
+    "qty": "Quantity",
+    "qtyError": "Only {n} in stock.",
+    "subtotal": "Subtotal (inc. VAT)",
+    "discount": "Discount",
+    "vat": "VAT (included)",
+    "payable": "Total",
+    "checkout": "Checkout",
+    "continue": "Continue shopping",
+    "loading": "Loading cart…",
+    "applyPromo": "Apply promo"
   },
   "checkout": {
-    "pay": "Pay",
-    "paying": "Paying…"
+    "title": "Checkout",
+    "pay": "Pay {amount}",
+    "paying": "Paying…",
+    "name": "Name",
+    "email": "Email",
+    "country": "Country",
+    "review": "Order summary",
+    "loading": "Loading checkout…"
+  },
+  "order": {
+    "successTitle": "Order confirmed",
+    "successBody": "Your order {orderId} is confirmed.",
+    "failedTitle": "Payment failed",
+    "failedRetry": "Back to cart"
   },
   "errors": {
     "OUT_OF_STOCK": "That item is out of stock.",
     "PRICE_MISMATCH": "A price changed. Review your cart and try again.",
     "PAYMENT_FAILED": "Payment failed. Your cart is unchanged.",
-    "CATALOG_LOAD": "Could not load the catalog."
+    "CATALOG_LOAD": "Could not load the catalog.",
+    "PRODUCT_LOAD": "Could not load this product.",
+    "CART_LOAD": "Could not load your cart.",
+    "CHECKOUT": "Could not complete checkout.",
+    "LINE_DROPPED": "Some items were removed because they have no price in this market."
+  },
+  "market": {
+    "confirm": "Prices will update to the new market."
   },
   "header": {
     "logo": "Fold Shop",

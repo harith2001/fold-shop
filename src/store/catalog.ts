@@ -64,7 +64,7 @@ const catalog: Module<CatalogState, RootState> = {
         commit('SET_ITEMS', upsertProduct(state.items, product));
         commit('SET_ACTIVE', id);
       } catch {
-        commit('SET_ERROR', 'errors.CATALOG_LOAD');
+        commit('SET_ERROR', 'errors.PRODUCT_LOAD');
       } finally {
         commit('SET_LOADING', false);
       }

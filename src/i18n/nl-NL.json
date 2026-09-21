@@ -4,6 +4,8 @@
     "title": "Catalogus",
     "empty": "Geen producten gevonden.",
     "loading": "Laden…",
+    "search": "Zoeken",
+    "searchLabel": "Producten zoeken",
     "filterAll": "Alle",
     "sortLabel": "Sorteren",
     "sortCatalog": "Catalogusvolgorde",
@@ -20,22 +22,57 @@
   },
   "product": {
     "addToCart": "In winkelwagen",
-    "outOfStock": "Niet op voorraad"
+    "outOfStock": "Niet op voorraad",
+    "qty": "Aantal",
+    "related": "Vergelijkbare producten",
+    "loading": "Product laden…",
+    "empty": "Product niet gevonden.",
+    "promo": "Actie toegepast"
   },
   "cart": {
+    "title": "Winkelwagen",
     "empty": "Je winkelwagen is leeg.",
     "remove": "Verwijderen",
-    "itemsCount": "{n} artikel | {n} artikelen"
+    "itemsCount": "{n} artikel | {n} artikelen",
+    "qty": "Aantal",
+    "qtyError": "Nog maar {n} op voorraad.",
+    "subtotal": "Subtotaal (incl. btw)",
+    "discount": "Korting",
+    "vat": "Btw (inbegrepen)",
+    "payable": "Totaal",
+    "checkout": "Afrekenen",
+    "continue": "Verder winkelen",
+    "loading": "Winkelwagen laden…",
+    "applyPromo": "Actie toepassen"
   },
   "checkout": {
-    "pay": "Betalen",
-    "paying": "Bezig met betalen…"
+    "title": "Afrekenen",
+    "pay": "Betaal {amount}",
+    "paying": "Bezig met betalen…",
+    "name": "Naam",
+    "email": "E-mail",
+    "country": "Land",
+    "review": "Besteloverzicht",
+    "loading": "Afrekenen laden…"
+  },
+  "order": {
+    "successTitle": "Bestelling bevestigd",
+    "successBody": "Je bestelling {orderId} is bevestigd.",
+    "failedTitle": "Betaling mislukt",
+    "failedRetry": "Terug naar winkelwagen"
   },
   "errors": {
     "OUT_OF_STOCK": "Dit artikel is niet op voorraad.",
     "PRICE_MISMATCH": "Een prijs is gewijzigd. Controleer je winkelwagen en probeer opnieuw.",
     "PAYMENT_FAILED": "Betaling mislukt. Je winkelwagen is ongewijzigd.",
-    "CATALOG_LOAD": "Catalogus kon niet worden geladen."
+    "CATALOG_LOAD": "Catalogus kon niet worden geladen.",
+    "PRODUCT_LOAD": "Dit product kon niet worden geladen.",
+    "CART_LOAD": "Winkelwagen kon niet worden geladen.",
+    "CHECKOUT": "Afrekenen kon niet worden afgerond.",
+    "LINE_DROPPED": "Sommige artikelen zijn verwijderd omdat ze geen prijs hebben in deze markt."
+  },
+  "market": {
+    "confirm": "Prijzen worden bijgewerkt naar de nieuwe markt."
   },
   "header": {
     "logo": "Fold Shop",

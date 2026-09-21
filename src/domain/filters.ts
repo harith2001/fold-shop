@@ -8,14 +8,19 @@ export interface FilterCatalogOptions {
   sort: CatalogSort;
   currency: CurrencyCode;
   nameOf: (product: Product) => string;
+  query?: string;
 }
 
 export function filterCatalog(products: Product[], options: FilterCatalogOptions): Product[] {
+  const needle = (options.query ?? '').trim().toLowerCase();
   const filtered = products.filter((product) => {
     if (options.category !== null && product.category !== options.category) {
       return false;
     }
     if (options.inStockOnly && product.stock <= 0) {
+      return false;
+    }
+    if (needle && !options.nameOf(product).toLowerCase().includes(needle)) {
       return false;
     }
     return true;

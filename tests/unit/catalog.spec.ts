@@ -210,7 +210,7 @@ describe('catalog module', () => {
 
       expect(store.state.catalog.activeId).toBe(3);
       expect(store.state.catalog.items).toEqual([seedCatalog[0]]);
-      expect(store.state.catalog.error).toBe('errors.CATALOG_LOAD');
+      expect(store.state.catalog.error).toBe('errors.PRODUCT_LOAD');
       expect(store.state.catalog.loading).toBe(false);
     });
   });

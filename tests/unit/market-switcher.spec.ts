@@ -15,9 +15,20 @@ interface RootState {
   ui: UiState;
 }
 
-function createStore(): Store<RootState> {
+function createStore(itemCount = 0): Store<RootState> {
   return new Vuex.Store<RootState>({
-    modules: { ui }
+    modules: {
+      ui,
+      cart: {
+        namespaced: true,
+        getters: {
+          isEmpty: () => itemCount === 0
+        },
+        actions: {
+          reprice: jest.fn()
+        }
+      }
+    }
   });
 }
 
@@ -46,5 +57,23 @@ describe('MarketSwitcher', () => {
 
     await changeSelect(wrapper, 'GB');
     expect(dispatch).toHaveBeenCalledWith('ui/setMarket', 'GB');
+  });
+
+  it('confirms before switching when the cart is not empty and cancel restores the select', async () => {
+    const confirm = jest.spyOn(window, 'confirm').mockReturnValue(false);
+    const store = createStore(1);
+    const dispatch = jest.spyOn(store, 'dispatch');
+    const wrapper = mount(MarketSwitcher, {
+      localVue,
+      store,
+      i18n
+    });
+
+    await changeSelect(wrapper, 'NL');
+
+    expect(confirm).toHaveBeenCalled();
+    expect(dispatch).not.toHaveBeenCalledWith('ui/setMarket', 'NL');
+    expect((wrapper.find('select').element as HTMLSelectElement).value).toBe('GB');
+    confirm.mockRestore();
   });
 });

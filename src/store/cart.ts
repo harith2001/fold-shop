@@ -2,12 +2,35 @@ import type { Module } from 'vuex';
 import { addLine, reprice, setQty } from '@/domain/cart';
 import { discount, payable, subtotal } from '@/domain/money';
 import { extractVat } from '@/domain/tax';
-import type { CartLine, CartState, CurrencyCode, Market, Product } from '@/domain/types';
+import type {
+  CartLine,
+  CartState,
+  CurrencyCode,
+  Market,
+  MarketId,
+  Product
+} from '@/domain/types';
+import { loadCartFromStorage, persistCartSnapshot } from './persist';
+import { MARKETS } from './ui';
 
-type RootState = { cart: CartState };
+type RootState = {
+  cart: CartState;
+  catalog?: { items: Product[] };
+};
 
 type QtyPayload = { productId: number; qty: number };
 type RepricePayload = { currency: CurrencyCode; pricesByProductId: Record<number, number> };
+
+function pricesForCurrency(items: Product[], currency: CurrencyCode): Record<number, number> {
+  const pricesByProductId: Record<number, number> = {};
+  items.forEach((product) => {
+    const cents = product.prices[currency];
+    if (cents != null) {
+      pricesByProductId[product.id] = cents;
+    }
+  });
+  return pricesByProductId;
+}
 
 const cart: Module<CartState, RootState> = {
   namespaced: true,
@@ -59,8 +82,47 @@ const cart: Module<CartState, RootState> = {
         currency
       });
     },
-    reprice({ commit }, payload: RepricePayload): void {
-      commit('REPRICE', payload);
+    reprice({ commit, state, dispatch, rootState, rootGetters }, marketId?: MarketId): void {
+      const market = marketId
+        ? MARKETS.find((item) => item.id === marketId)
+        : (rootGetters['ui/market'] as Market | undefined);
+      if (!market) {
+        return;
+      }
+      const catalogItems = rootState.catalog?.items ?? [];
+      if (catalogItems.length === 0) {
+        commit('SET_MARKET', market.id);
+        return;
+      }
+      const beforeCount = state.lines.length;
+      commit('REPRICE', {
+        currency: market.currency,
+        pricesByProductId: pricesForCurrency(catalogItems, market.currency)
+      });
+      commit('SET_MARKET', market.id);
+      dispatch(
+        'ui/setNotice',
+        beforeCount > state.lines.length ? 'errors.LINE_DROPPED' : null,
+        { root: true }
+      );
+    },
+    persist({ state }): void {
+      persistCartSnapshot(state);
+    },
+    restore({ commit }): void {
+      const snapshot = loadCartFromStorage();
+      if (snapshot) {
+        commit('HYDRATE', snapshot);
+      }
+    },
+    setQty({ commit }, payload: QtyPayload): void {
+      commit('SET_QTY', payload);
+    },
+    remove({ commit }, productId: number): void {
+      commit('REMOVE_LINE', productId);
+    },
+    clear({ commit }): void {
+      commit('CLEAR');
     }
   },
   getters: {

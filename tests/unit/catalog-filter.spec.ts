@@ -177,4 +177,16 @@ describe('filterCatalog', () => {
 
     expect(result).toEqual([]);
   });
+
+  it('filters to light SKUs when the query is light', () => {
+    const result = filterCatalog(
+      seedCatalog,
+      options({
+        query: 'light',
+        nameOf: (item) => item.sku
+      })
+    );
+
+    expect(skus(result)).toEqual(['light-front', 'light-rear', 'light-set']);
+  });
 });

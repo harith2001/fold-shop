@@ -13,7 +13,19 @@ interface RootState {
 
 function createStore(): Store<RootState> {
   return new Vuex.Store<RootState>({
-    modules: { ui }
+    modules: {
+      ui,
+      cart: {
+        namespaced: true,
+        state: () => ({ lines: [] }),
+        getters: {
+          isEmpty: () => true
+        },
+        actions: {
+          reprice: jest.fn()
+        }
+      }
+    }
   });
 }
 
@@ -83,13 +95,13 @@ describe('ui module', () => {
       expect(i18n.locale).toBe('nl-NL');
     });
 
-    it('setMarket does not dispatch cart actions', async () => {
+    it('setMarket dispatches cart/reprice for the new market', async () => {
       const store = createStore();
       const dispatch = jest.spyOn(store, 'dispatch');
 
       await store.dispatch('ui/setMarket', 'NL');
 
-      expect(dispatch.mock.calls.filter(([type]) => String(type).startsWith('cart/'))).toEqual([]);
+      expect(dispatch).toHaveBeenCalledWith('cart/reprice', 'NL');
     });
   });
 });

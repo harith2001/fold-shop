@@ -30,7 +30,15 @@ interface RootState {
 
 function createStore(): Store<RootState> {
   return new Vuex.Store<RootState>({
-    modules: { ui }
+    modules: {
+      ui,
+      cart: {
+        namespaced: true,
+        actions: {
+          reprice: jest.fn()
+        }
+      }
+    }
   });
 }
 
