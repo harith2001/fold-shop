@@ -28,6 +28,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapGetters, mapState } from 'vuex';
+import { MARKETS } from '@/store/ui';
 import type { MarketId } from '@/domain/types';
 
 export default Vue.extend({
@@ -39,7 +40,7 @@ export default Vue.extend({
     ...mapState('ui', ['marketId']),
     ...mapGetters('cart', ['isEmpty']),
     marketIds(): MarketId[] {
-      return ['GB', 'NL'];
+      return MARKETS.map((market) => market.id);
     }
   },
   methods: {

@@ -18,7 +18,7 @@ const product: Product = {
   descriptionKey: 'products.fold-bag-01.description',
   category: 'bags',
   image: '/images/fold-bag-01.svg',
-  prices: { GBP: 8900, EUR: 9900 },
+  prices: { GBP: 8900, EUR: 9900, LKR: 3560000 },
   stock: 2,
   weightGrams: 420
 };

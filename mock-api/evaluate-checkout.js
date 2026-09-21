@@ -6,7 +6,8 @@ function evaluateCheckout({ idempotencyKey, payload, forceFail, catalog, success
 
   const lines = Array.isArray(payload.lines) ? payload.lines : [];
   const market = payload.marketId;
-  const currency = market === 'NL' ? 'EUR' : market === 'GB' ? 'GBP' : null;
+  const currency =
+    market === 'NL' ? 'EUR' : market === 'GB' ? 'GBP' : market === 'LK' ? 'LKR' : null;
 
   const stockLine = lines.find((line) => {
     const product = catalog.find((item) => item.id === line.productId);

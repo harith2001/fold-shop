@@ -70,6 +70,19 @@ describe('ui module', () => {
       expect(i18n.locale).toBe('nl-NL');
     });
 
+    it('setMarket LK updates market, locale, currency, and i18n together', async () => {
+      const store = createStore();
+
+      await store.dispatch('ui/setMarket', 'LK');
+
+      expect(store.state.ui.marketId).toBe('LK');
+      expect(store.state.ui.locale).toBe('si-LK');
+      expect(store.getters['ui/market']).toEqual(MARKETS[2]);
+      expect(store.getters['ui/currency']).toBe('LKR');
+      expect(store.getters['ui/locale']).toBe('si-LK');
+      expect(i18n.locale).toBe('si-LK');
+    });
+
     it('setMarket GB from NL restores GB, en-GB, and GBP', async () => {
       const store = createStore();
       await store.dispatch('ui/setMarket', 'NL');

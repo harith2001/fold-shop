@@ -6,7 +6,7 @@ const catalog = [
   {
     id: 1,
     sku: 'fold-bag-01',
-    prices: { GBP: 8900, EUR: 9900 },
+    prices: { GBP: 8900, EUR: 9900, LKR: 3560000 },
     stock: 2
   }
 ];

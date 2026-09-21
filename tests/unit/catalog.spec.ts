@@ -22,7 +22,7 @@ function product(partial: Partial<Product> & Pick<Product, 'id' | 'sku'>): Produ
     descriptionKey: `products.${partial.sku}.description`,
     category: 'bags',
     image: `/images/${partial.sku}.svg`,
-    prices: { GBP: 1000, EUR: 1100 },
+    prices: { GBP: 1000, EUR: 1100, LKR: 400000 },
     stock: 1,
     weightGrams: 100,
     ...partial
@@ -35,70 +35,70 @@ const seedCatalog: Product[] = [
     sku: 'fold-bag-01',
     category: 'bags',
     stock: 12,
-    prices: { GBP: 8900, EUR: 9900 }
+    prices: { GBP: 8900, EUR: 9900, LKR: 3560000 }
   }),
   product({
     id: 2,
     sku: 'fold-bag-02',
     category: 'bags',
     stock: 4,
-    prices: { GBP: 12500, EUR: 13900 }
+    prices: { GBP: 12500, EUR: 13900, LKR: 5000000 }
   }),
   product({
     id: 3,
     sku: 'light-front',
     category: 'lights',
     stock: 20,
-    prices: { GBP: 3500, EUR: 3900 }
+    prices: { GBP: 3500, EUR: 3900, LKR: 1400000 }
   }),
   product({
     id: 4,
     sku: 'light-rear',
     category: 'lights',
     stock: 20,
-    prices: { GBP: 2900, EUR: 3200 }
+    prices: { GBP: 2900, EUR: 3200, LKR: 1160000 }
   }),
   product({
     id: 5,
     sku: 'rack-rear',
     category: 'racks',
     stock: 6,
-    prices: { GBP: 7900, EUR: 8900 }
+    prices: { GBP: 7900, EUR: 8900, LKR: 3160000 }
   }),
   product({
     id: 6,
     sku: 'cover-night',
     category: 'covers',
     stock: 8,
-    prices: { GBP: 4500, EUR: 4900 }
+    prices: { GBP: 4500, EUR: 4900, LKR: 1800000 }
   }),
   product({
     id: 7,
     sku: 'cover-rain',
     category: 'covers',
     stock: 0,
-    prices: { GBP: 5200, EUR: 5800 }
+    prices: { GBP: 5200, EUR: 5800, LKR: 2080000 }
   }),
   product({
     id: 8,
     sku: 'light-set',
     category: 'lights',
     stock: 10,
-    prices: { GBP: 5900, EUR: 6500 }
+    prices: { GBP: 5900, EUR: 6500, LKR: 2360000 }
   }),
   product({
     id: 9,
     sku: 'bag-mini',
     category: 'bags',
     stock: 15,
-    prices: { GBP: 4900, EUR: 5500 }
+    prices: { GBP: 4900, EUR: 5500, LKR: 1960000 }
   }),
   product({
     id: 10,
     sku: 'rack-front',
     category: 'racks',
     stock: 3,
-    prices: { GBP: 6400, EUR: 7200 }
+    prices: { GBP: 6400, EUR: 7200, LKR: 2560000 }
   })
 ];
 

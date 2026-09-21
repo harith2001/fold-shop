@@ -1,6 +1,6 @@
-export type CurrencyCode = 'GBP' | 'EUR';
-export type MarketId = 'GB' | 'NL';
-export type LocaleId = 'en-GB' | 'nl-NL';
+export type CurrencyCode = 'GBP' | 'EUR' | 'LKR';
+export type MarketId = 'GB' | 'NL' | 'LK';
+export type LocaleId = 'en-GB' | 'nl-NL' | 'si-LK';
 
 export interface Market {
   id: MarketId;

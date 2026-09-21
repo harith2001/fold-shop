@@ -24,7 +24,7 @@ const sampleProduct: Product = {
   descriptionKey: 'products.fold-bag-01.description',
   category: 'bags',
   image: '/images/fold-bag-01.svg',
-  prices: { GBP: 8900, EUR: 9900 },
+  prices: { GBP: 8900, EUR: 9900, LKR: 3560000 },
   stock: 12,
   weightGrams: 420
 };
@@ -37,7 +37,7 @@ const coverRain: Product = {
   descriptionKey: 'products.cover-rain.description',
   category: 'covers',
   image: '/images/cover-rain.svg',
-  prices: { GBP: 5200, EUR: 5800 },
+  prices: { GBP: 5200, EUR: 5800, LKR: 2080000 },
   stock: 0,
   weightGrams: 380
 };
@@ -50,7 +50,7 @@ const bagMini: Product = {
   descriptionKey: 'products.bag-mini.description',
   category: 'bags',
   image: '/images/bag-mini.svg',
-  prices: { GBP: 4900, EUR: 5500 },
+  prices: { GBP: 4900, EUR: 5500, LKR: 1960000 },
   stock: 15,
   weightGrams: 180
 };

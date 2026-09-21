@@ -5,23 +5,68 @@
       {{ $t('checkout.loading') }}
     </p>
     <ErrorBanner v-else-if="catalogError && catalogEmpty" :message="$t(catalogError)" />
-    <form v-else class="checkout__form" @submit.prevent="onPay">
+    <form v-else class="checkout__form" novalidate @submit.prevent="onPay">
       <ErrorBanner v-if="lastError" :message="$t('errors.' + lastError.code)" />
-      <label>
-        {{ $t('checkout.name') }}
-        <input v-model.trim="name" type="text" name="name" required autocomplete="name" />
-      </label>
-      <label>
-        {{ $t('checkout.email') }}
-        <input v-model.trim="email" type="email" name="email" required autocomplete="email" />
-      </label>
-      <label>
-        {{ $t('checkout.country') }}
-        <select v-model="country">
-          <option value="GB">{{ $t('markets.GB') }}</option>
-          <option value="NL">{{ $t('markets.NL') }}</option>
-        </select>
-      </label>
+      <div class="checkout__field">
+        <label for="checkout-name">
+          {{ $t('checkout.name') }}
+          <input
+            id="checkout-name"
+            v-model.trim="name"
+            type="text"
+            name="name"
+            autocomplete="name"
+            :aria-invalid="Boolean(fieldErrors.name) ? 'true' : 'false'"
+            :aria-describedby="fieldErrors.name ? 'checkout-name-error' : undefined"
+            @input="clearError('name')"
+          />
+        </label>
+        <p v-if="fieldErrors.name" id="checkout-name-error" class="checkout__error" role="alert">
+          {{ fieldErrors.name }}
+        </p>
+      </div>
+      <div class="checkout__field">
+        <label for="checkout-email">
+          {{ $t('checkout.email') }}
+          <input
+            id="checkout-email"
+            v-model.trim="email"
+            type="email"
+            name="email"
+            autocomplete="email"
+            :aria-invalid="Boolean(fieldErrors.email) ? 'true' : 'false'"
+            :aria-describedby="fieldErrors.email ? 'checkout-email-error' : undefined"
+            @input="clearError('email')"
+          />
+        </label>
+        <p v-if="fieldErrors.email" id="checkout-email-error" class="checkout__error" role="alert">
+          {{ fieldErrors.email }}
+        </p>
+      </div>
+      <div class="checkout__field">
+        <label for="checkout-country">
+          {{ $t('checkout.country') }}
+          <select
+            id="checkout-country"
+            v-model="country"
+            :aria-invalid="Boolean(fieldErrors.country) ? 'true' : 'false'"
+            :aria-describedby="fieldErrors.country ? 'checkout-country-error' : undefined"
+            @change="clearError('country')"
+          >
+            <option v-for="market in markets" :key="market.id" :value="market.id">
+              {{ $t('markets.' + market.id) }}
+            </option>
+          </select>
+        </label>
+        <p
+          v-if="fieldErrors.country"
+          id="checkout-country-error"
+          class="checkout__error"
+          role="alert"
+        >
+          {{ fieldErrors.country }}
+        </p>
+      </div>
       <section class="checkout__review">
         <h2>{{ $t('checkout.review') }}</h2>
         <CartSummary
@@ -45,7 +90,13 @@ import { mapGetters, mapState } from 'vuex';
 import CartSummary from '@/components/CartSummary.vue';
 import ErrorBanner from '@/components/ErrorBanner.vue';
 import { formatCents } from '@/domain/money';
-import type { CurrencyCode, LocaleId, MarketId } from '@/domain/types';
+import type { CurrencyCode, LocaleId, Market, MarketId } from '@/domain/types';
+import { MARKETS } from '@/store/ui';
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type FieldName = 'name' | 'email' | 'country';
+type FieldErrors = Partial<Record<FieldName, string>>;
 
 export default Vue.extend({
   name: 'CheckoutView',
@@ -53,11 +104,12 @@ export default Vue.extend({
     CartSummary,
     ErrorBanner
   },
-  data(): { name: string; email: string; country: MarketId } {
+  data(): { name: string; email: string; country: MarketId; fieldErrors: FieldErrors } {
     return {
       name: '',
       email: '',
-      country: 'GB'
+      country: 'GB',
+      fieldErrors: {}
     };
   },
   computed: {
@@ -69,6 +121,9 @@ export default Vue.extend({
     }),
     ...mapGetters('cart', ['subtotalCents', 'discountCents', 'payableCents', 'vatCents']),
     ...mapGetters('ui', ['locale', 'currency', 'market']),
+    markets(): Market[] {
+      return MARKETS;
+    },
     catalogEmpty(): boolean {
       return this.$store.state.catalog.items.length === 0;
     },
@@ -89,7 +144,34 @@ export default Vue.extend({
     }
   },
   methods: {
+    clearError(field: FieldName): void {
+      if (!this.fieldErrors[field]) {
+        return;
+      }
+      const next: FieldErrors = { ...this.fieldErrors };
+      delete next[field];
+      this.fieldErrors = next;
+    },
+    validate(): boolean {
+      const errors: FieldErrors = {};
+      if (!this.name) {
+        errors.name = String(this.$t('checkout.errors.nameRequired'));
+      }
+      if (!this.email) {
+        errors.email = String(this.$t('checkout.errors.emailRequired'));
+      } else if (!EMAIL_PATTERN.test(this.email)) {
+        errors.email = String(this.$t('checkout.errors.emailInvalid'));
+      }
+      if (!this.country) {
+        errors.country = String(this.$t('checkout.errors.countryRequired'));
+      }
+      this.fieldErrors = errors;
+      return Object.keys(errors).length === 0;
+    },
     async onPay(): Promise<void> {
+      if (!this.validate()) {
+        return;
+      }
       await this.$store.dispatch('checkout/submit', {
         name: this.name,
         email: this.email,
@@ -130,7 +212,7 @@ export default Vue.extend({
   max-width: 24rem;
 }
 
-.checkout__form label {
+.checkout__field label {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -149,6 +231,16 @@ export default Vue.extend({
   letter-spacing: 0;
   text-transform: none;
   color: var(--color-ink);
+}
+
+.checkout__error {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-mark);
+  line-height: 1.4;
 }
 
 .checkout__review {

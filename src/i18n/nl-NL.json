@@ -43,7 +43,8 @@
     "checkout": "Afrekenen",
     "continue": "Verder winkelen",
     "loading": "Winkelwagen laden…",
-    "applyPromo": "Actie toepassen"
+    "applyPromo": "Actie toepassen",
+    "added": "{name} is in de winkelwagen gezet."
   },
   "checkout": {
     "title": "Afrekenen",
@@ -53,7 +54,13 @@
     "email": "E-mail",
     "country": "Land",
     "review": "Besteloverzicht",
-    "loading": "Afrekenen laden…"
+    "loading": "Afrekenen laden…",
+    "errors": {
+      "nameRequired": "Vul een naam in.",
+      "emailRequired": "Vul een e-mailadres in.",
+      "emailInvalid": "Vul een geldig e-mailadres in.",
+      "countryRequired": "Kies een land."
+    }
   },
   "order": {
     "successTitle": "Bestelling bevestigd",
@@ -87,7 +94,8 @@
   },
   "markets": {
     "GB": "Verenigd Koninkrijk",
-    "NL": "Nederland"
+    "NL": "Nederland",
+    "LK": "Sri Lanka"
   },
   "placeholder": {
     "productTitle": "Product {id}",

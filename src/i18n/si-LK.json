@@ -1,0 +1,156 @@
+{
+  "_comment": "Sinhala is interview-demo quality.",
+  "catalog": {
+    "title": "නාමාවලිය",
+    "empty": "මෙම නිකුතුවට ගැලපෙන කිසිවක් නැත.",
+    "loading": "තහඩු සකසමින්…",
+    "search": "සොයන්න",
+    "searchLabel": "සොයන්න",
+    "filterAll": "සියල්ල",
+    "sortLabel": "අනුපිළිවෙල",
+    "sortCatalog": "නාමාවලි අනුපිළිවෙල",
+    "sortPriceAsc": "මිල: අඩුවේ සිට වැඩිව",
+    "sortPriceDesc": "මිල: වැඩිවේ සිට අඩුව",
+    "sortName": "නම",
+    "inStockOnly": "තොග ඇති ඒවා පමණයි",
+    "categories": {
+      "bags": "බෑග්",
+      "lights": "ආලෝක",
+      "racks": "රැක",
+      "covers": "ආවරණ"
+    }
+  },
+  "product": {
+    "addToCart": "කරත්තයට එක් කරන්න",
+    "outOfStock": "තොග නැත",
+    "qty": "ප්‍රමාණය",
+    "related": "මෙම වර්ගයේ තවත්",
+    "loading": "මේ කොටස සොයමින්…",
+    "empty": "නිෂ්පාදනය හමු නොවීය.",
+    "promo": "ප්‍රවර්ධනය යොදන ලදී"
+  },
+  "cart": {
+    "title": "කරත්තය",
+    "empty": "ඔබේ කරත්තය හිස්ය.",
+    "remove": "ඉවත් කරන්න",
+    "itemsCount": "අයිතම {n}ක් | අයිතම {n}ක්",
+    "qty": "ප්‍රමාණය",
+    "qtyError": "තොගයේ ඇත්තේ {n}ක් පමණි.",
+    "subtotal": "උප එකතුව (VAT ඇතුළුව)",
+    "discount": "වට්ටම",
+    "vat": "VAT (ඇතුළත්)",
+    "payable": "මුළු මුදල",
+    "checkout": "ගෙවීම",
+    "continue": "තවත් බලන්න",
+    "loading": "කරත්තය පූරණය වේ…",
+    "applyPromo": "ප්‍රවර්ධනය යොදන්න",
+    "added": "{name} කරත්තයට එක් කෙරිණි."
+  },
+  "checkout": {
+    "title": "ගෙවීම",
+    "pay": "{amount} ගෙවන්න",
+    "paying": "ගෙවමින්…",
+    "name": "නම",
+    "email": "විද්‍යුත් තැපෑල",
+    "country": "රට",
+    "review": "ඇණවුම් සාරාංශය",
+    "loading": "ගෙවීම පූරණය වේ…",
+    "errors": {
+      "nameRequired": "නමක් ඇතුළත් කරන්න.",
+      "emailRequired": "විද්‍යුත් තැපැල් ලිපිනයක් ඇතුළත් කරන්න.",
+      "emailInvalid": "වලංගු විද්‍යුත් තැපැල් ලිපිනයක් ඇතුළත් කරන්න.",
+      "countryRequired": "රටක් තෝරන්න."
+    }
+  },
+  "order": {
+    "successTitle": "ඇණවුම තහවුරු විය",
+    "successBody": "ඔබේ ඇණවුම {orderId} තහවුරු විය.",
+    "failedTitle": "ගෙවීම අසාර්ථක විය",
+    "failedRetry": "කරත්තයට ආපසු"
+  },
+  "errors": {
+    "OUT_OF_STOCK": "එම අයිතමය තොග නැත.",
+    "PRICE_MISMATCH": "මිලක් වෙනස් විය. කරත්තය පරීක්ෂා කර නැවත උත්සාහ කරන්න.",
+    "PAYMENT_FAILED": "ගෙවීම අසාර්ථක විය. කරත්තය නොවෙනස්ය.",
+    "CATALOG_LOAD": "නාමාවලිය පූරණය කළ නොහැකි විය.",
+    "PRODUCT_LOAD": "මෙම නිෂ්පාදනය පූරණය කළ නොහැකි විය.",
+    "CART_LOAD": "කරත්තය පූරණය කළ නොහැකි විය.",
+    "CHECKOUT": "ගෙවීම සම්පූර්ණ කළ නොහැකි විය.",
+    "LINE_DROPPED": "මෙම වෙළඳපොළේ මිලක් නැති නිසා සමහර අයිතම ඉවත් විය."
+  },
+  "market": {
+    "confirm": "{market} සඳහා මිල නැවත මුද්‍රණය වේ.",
+    "reprint": "නැවත මුද්‍රණය",
+    "keep": "තබා ගන්න"
+  },
+  "header": {
+    "logo": "Fold Shop",
+    "nav": "ප්‍රධාන",
+    "market": "වෙළඳපොළ"
+  },
+  "nav": {
+    "catalog": "නාමාවලිය",
+    "cart": "කරත්තය"
+  },
+  "markets": {
+    "GB": "එක්සත් රාජධානිය",
+    "NL": "නෙදර්ලන්තය",
+    "LK": "ශ්‍රී ලංකාව"
+  },
+  "placeholder": {
+    "productTitle": "නිෂ්පාදනය {id}",
+    "productBody": "නිෂ්පාදන විස්තරය පසු කතාවකදී.",
+    "cartTitle": "කරත්තය",
+    "cartBody": "කරත්ත දර්ශනය පසු කතාවකදී.",
+    "checkoutTitle": "ගෙවීම",
+    "checkoutBody": "ගෙවීම පසු කතාවකදී.",
+    "orderSuccessTitle": "ඇණවුම {orderId}",
+    "orderSuccessBody": "ඇණවුම් සාර්ථකත්වය පසු කතාවකදී.",
+    "orderFailedTitle": "ඇණවුම අසාර්ථකයි",
+    "orderFailedBody": "දෝෂ හැසිරවීම පසු කතාවකදී.",
+    "notFoundTitle": "පිටුව හමු නොවීය",
+    "notFoundBack": "නාමාවලියට ආපසු"
+  },
+  "products": {
+    "fold-bag-01": {
+      "name": "නගර පැනියර්",
+      "description": "දෛනික නැමීම් බයිසිකල් ගමන් සඳහා සංයුක්ත පැනියර් එකකි."
+    },
+    "fold-bag-02": {
+      "name": "සංචාරක පැනියර්",
+      "description": "වැඩි ධාරිතාවක් අවශ්‍ය විට විශාල පැනියර් එකකි."
+    },
+    "light-front": {
+      "name": "ඉදිරි ආලෝකය",
+      "description": "රාත්‍රී ගමන් සඳහා දීප්තිමත් ඉදිරි ආලෝකයකි."
+    },
+    "light-rear": {
+      "name": "පසුපස ආලෝකය",
+      "description": "රථවාහනයේ දෘශ්‍ය වීමට පසුපස ආලෝකයකි."
+    },
+    "rack-rear": {
+      "name": "පසුපස රැකය",
+      "description": "බෑග් සහ අමතර දෑ සඳහා පසුපස රැකයකි."
+    },
+    "cover-night": {
+      "name": "රාත්‍රී ආවරණය",
+      "description": "රාත්‍රියේ බයිසිකලය වියළිව තබන ආවරණයකි."
+    },
+    "cover-rain": {
+      "name": "වැසි ආවරණය",
+      "description": "තෙත් කාලගුණය සඳහා ජල ආරක්ෂිත ආවරණයකි."
+    },
+    "light-set": {
+      "name": "ආලෝක කට්ටලය",
+      "description": "ඉදිරි සහ පසුපස ආලෝක යුගලයකි."
+    },
+    "bag-mini": {
+      "name": "කුඩා බෑගය",
+      "description": "යතුරු සහ අගුලක් සඳහා කුඩා බෑගයකි."
+    },
+    "rack-front": {
+      "name": "ඉදිරි රැකය",
+      "description": "සංයුක්ත බරක් සඳහා ඉදිරි රැකයකි."
+    }
+  }
+}

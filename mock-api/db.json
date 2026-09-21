@@ -13,6 +13,13 @@
       "currency": "EUR",
       "vatBps": 2100,
       "pricesIncludeVat": true
+    },
+    {
+      "id": "LK",
+      "locale": "si-LK",
+      "currency": "LKR",
+      "vatBps": 1800,
+      "pricesIncludeVat": true
     }
   ],
   "products": [
@@ -24,7 +31,7 @@
       "descriptionKey": "products.fold-bag-01.description",
       "category": "bags",
       "image": "/images/fold-bag-01.svg",
-      "prices": { "GBP": 8900, "EUR": 9900 },
+      "prices": { "GBP": 8900, "EUR": 9900, "LKR": 3560000 },
       "stock": 12,
       "weightGrams": 420
     },
@@ -36,7 +43,7 @@
       "descriptionKey": "products.fold-bag-02.description",
       "category": "bags",
       "image": "/images/fold-bag-02.svg",
-      "prices": { "GBP": 12500, "EUR": 13900 },
+      "prices": { "GBP": 12500, "EUR": 13900, "LKR": 5000000 },
       "stock": 4,
       "weightGrams": 680
     },
@@ -48,7 +55,7 @@
       "descriptionKey": "products.light-front.description",
       "category": "lights",
       "image": "/images/light-front.svg",
-      "prices": { "GBP": 3500, "EUR": 3900 },
+      "prices": { "GBP": 3500, "EUR": 3900, "LKR": 1400000 },
       "stock": 20,
       "weightGrams": 85
     },
@@ -60,7 +67,7 @@
       "descriptionKey": "products.light-rear.description",
       "category": "lights",
       "image": "/images/light-rear.svg",
-      "prices": { "GBP": 2900, "EUR": 3200 },
+      "prices": { "GBP": 2900, "EUR": 3200, "LKR": 1160000 },
       "stock": 20,
       "weightGrams": 70
     },
@@ -72,7 +79,7 @@
       "descriptionKey": "products.rack-rear.description",
       "category": "racks",
       "image": "/images/rack-rear.svg",
-      "prices": { "GBP": 7900, "EUR": 8900 },
+      "prices": { "GBP": 7900, "EUR": 8900, "LKR": 3160000 },
       "stock": 6,
       "weightGrams": 920
     },
@@ -84,7 +91,7 @@
       "descriptionKey": "products.cover-night.description",
       "category": "covers",
       "image": "/images/cover-night.svg",
-      "prices": { "GBP": 4500, "EUR": 4900 },
+      "prices": { "GBP": 4500, "EUR": 4900, "LKR": 1800000 },
       "stock": 8,
       "weightGrams": 310
     },
@@ -96,7 +103,7 @@
       "descriptionKey": "products.cover-rain.description",
       "category": "covers",
       "image": "/images/cover-rain.svg",
-      "prices": { "GBP": 5200, "EUR": 5800 },
+      "prices": { "GBP": 5200, "EUR": 5800, "LKR": 2080000 },
       "stock": 0,
       "weightGrams": 340
     },
@@ -108,7 +115,7 @@
       "descriptionKey": "products.light-set.description",
       "category": "lights",
       "image": "/images/light-set.svg",
-      "prices": { "GBP": 5900, "EUR": 6500 },
+      "prices": { "GBP": 5900, "EUR": 6500, "LKR": 2360000 },
       "stock": 10,
       "weightGrams": 150
     },
@@ -120,7 +127,7 @@
       "descriptionKey": "products.bag-mini.description",
       "category": "bags",
       "image": "/images/bag-mini.svg",
-      "prices": { "GBP": 4900, "EUR": 5500 },
+      "prices": { "GBP": 4900, "EUR": 5500, "LKR": 1960000 },
       "stock": 15,
       "weightGrams": 180
     },
@@ -132,7 +139,7 @@
       "descriptionKey": "products.rack-front.description",
       "category": "racks",
       "image": "/images/rack-front.svg",
-      "prices": { "GBP": 6400, "EUR": 7200 },
+      "prices": { "GBP": 6400, "EUR": 7200, "LKR": 2560000 },
       "stock": 3,
       "weightGrams": 540
     }

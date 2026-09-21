@@ -25,4 +25,16 @@ describe('PriceTag', () => {
 
     expect(wrapper.text().replace(/\s/g, ' ')).toMatch(/€\s?99,00/);
   });
+
+  it('formats LKR under si-LK', () => {
+    const wrapper = mount(PriceTag, {
+      propsData: {
+        cents: 3560000,
+        locale: 'si-LK',
+        currency: 'LKR'
+      }
+    });
+
+    expect(wrapper.text().replace(/[^\d]/g, '')).toMatch(/35600/);
+  });
 });

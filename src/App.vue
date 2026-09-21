@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="app">
     <AppHeader />
+    <CartToast />
     <main class="app__main">
       <ErrorBanner v-if="notice" :message="$t(notice)" />
       <router-view />
@@ -12,12 +13,14 @@
 import Vue from 'vue';
 import { mapState } from 'vuex';
 import AppHeader from '@/components/AppHeader.vue';
+import CartToast from '@/components/CartToast.vue';
 import ErrorBanner from '@/components/ErrorBanner.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
     AppHeader,
+    CartToast,
     ErrorBanner
   },
   computed: {

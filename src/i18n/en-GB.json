@@ -42,7 +42,8 @@
     "checkout": "Checkout",
     "continue": "Continue shopping",
     "loading": "Loading cart…",
-    "applyPromo": "Apply promo"
+    "applyPromo": "Apply promo",
+    "added": "{name} added to cart."
   },
   "checkout": {
     "title": "Checkout",
@@ -52,7 +53,13 @@
     "email": "Email",
     "country": "Country",
     "review": "Order summary",
-    "loading": "Loading checkout…"
+    "loading": "Loading checkout…",
+    "errors": {
+      "nameRequired": "Enter a name.",
+      "emailRequired": "Enter an email address.",
+      "emailInvalid": "Enter a valid email address.",
+      "countryRequired": "Choose a country."
+    }
   },
   "order": {
     "successTitle": "Order confirmed",
@@ -71,7 +78,7 @@
     "LINE_DROPPED": "Some items were removed because they have no price in this market."
   },
   "market": {
-    "confirm": "Prices will reprint for the {market}.",
+    "confirm": "Prices will reprint in {market}.",
     "reprint": "Reprint",
     "keep": "Keep"
   },
@@ -86,7 +93,8 @@
   },
   "markets": {
     "GB": "United Kingdom",
-    "NL": "Netherlands"
+    "NL": "Netherlands",
+    "LK": "Sri Lanka"
   },
   "placeholder": {
     "productTitle": "Product {id}",

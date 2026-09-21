@@ -54,8 +54,9 @@ describe('formatCents', () => {
     expect(formatCents(8900, 'en-GB', 'GBP')).toBe('£89.00');
   });
 
-  it('formats EUR under nl-NL', () => {
-    const formatted = formatCents(8900, 'nl-NL', 'EUR');
-    expect(formatted.replace(/\s/g, ' ')).toMatch(/€\s?89,00/);
+  it('formats LKR under si-LK', () => {
+    const formatted = formatCents(3560000, 'si-LK', 'LKR');
+    expect(formatted.replace(/\s/g, ' ')).toMatch(/Rs|රු|LKR/);
+    expect(formatted.replace(/[^\d]/g, '')).toMatch(/35600/);
   });
 });

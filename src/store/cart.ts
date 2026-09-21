@@ -6,6 +6,7 @@ import { extractVat } from '@/domain/tax';
 import type { CartLine, CartState, CurrencyCode, Market, MarketId, Product } from '@/domain/types';
 import { loadCartFromStorage, persistCartSnapshot } from './persist';
 import { MARKETS } from './ui';
+import i18n from '@/i18n';
 
 type RootState = {
   cart: CartState;
@@ -68,7 +69,7 @@ const cart: Module<CartState, RootState> = {
     }
   },
   actions: {
-    add({ commit, state, rootGetters }, product: Product): void {
+    add({ commit, state, rootGetters, dispatch }, product: Product): void {
       const currency = rootGetters['ui/currency'] as CurrencyCode;
       const market = rootGetters['ui/market'] as Market | undefined;
       const unitPriceCents = product.prices[currency];
@@ -86,6 +87,15 @@ const cart: Module<CartState, RootState> = {
         unitPriceCents,
         currency
       });
+      dispatch(
+        'ui/showToast',
+        String(
+          i18n.t('cart.added', {
+            name: i18n.t(product.nameKey)
+          })
+        ),
+        { root: true }
+      );
     },
     reprice({ commit, state, dispatch, rootState, rootGetters }, marketId?: MarketId): void {
       const market = marketId

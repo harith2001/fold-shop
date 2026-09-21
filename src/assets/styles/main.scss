@@ -7,8 +7,9 @@
   --color-accent: #8c2f2b;
   --color-mark: #8c2f2b;
   --color-on-mark: #f7f4ed;
-  --font-serif: Newsreader, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
-  --font-sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-serif: Newsreader, 'Noto Serif Sinhala', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    serif;
+  --font-sans: 'IBM Plex Sans', 'Noto Sans Sinhala', 'Segoe UI', sans-serif;
 }
 
 *,
@@ -81,4 +82,20 @@ textarea {
 hr {
   border: 0;
   border-top: 1px solid var(--color-line);
+}
+
+html[lang='si-LK'] {
+  .header__link,
+  .header__count,
+  .switcher__option,
+  .catalog__chip,
+  .search,
+  .checkout__form label,
+  .pdp__qty,
+  .pdp__related h2,
+  .checkout__review h2 {
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: 0.875rem;
+  }
 }

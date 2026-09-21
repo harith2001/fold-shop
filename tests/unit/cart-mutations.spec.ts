@@ -24,6 +24,9 @@ function stubUi(currency: CurrencyCode = 'GBP', market: Market = gbMarket) {
     getters: {
       currency: () => currency,
       market: () => market
+    },
+    actions: {
+      showToast: jest.fn()
     }
   };
 }
@@ -57,7 +60,7 @@ function product(partial: Partial<Product> = {}): Product {
     descriptionKey: 'products.fold-bag-01.description',
     category: 'bags',
     image: '/images/fold-bag-01.svg',
-    prices: { GBP: 8900, EUR: 9900 },
+    prices: { GBP: 8900, EUR: 9900, LKR: 3560000 },
     stock: 12,
     weightGrams: 480,
     ...partial
@@ -126,7 +129,7 @@ describe('cart mutations', () => {
       line({ qty: 2, unitPriceCents: 8900, currency: 'GBP' })
     ]);
     expect(store.state.cart.marketId).toBe('GB');
-    expect(frozen.prices).toEqual({ GBP: 8900, EUR: 9900 });
+    expect(frozen.prices).toEqual({ GBP: 8900, EUR: 9900, LKR: 3560000 });
     expect(frozen).toEqual({ ...item, prices: frozenPrices });
   });
 
