@@ -3,14 +3,7 @@ import type { Module } from 'vuex';
 import { addLine, reprice, setQty } from '@/domain/cart';
 import { discount, payable, subtotal } from '@/domain/money';
 import { extractVat } from '@/domain/tax';
-import type {
-  CartLine,
-  CartState,
-  CurrencyCode,
-  Market,
-  MarketId,
-  Product
-} from '@/domain/types';
+import type { CartLine, CartState, CurrencyCode, Market, MarketId, Product } from '@/domain/types';
 import { loadCartFromStorage, persistCartSnapshot } from './persist';
 import { MARKETS } from './ui';
 
@@ -75,11 +68,15 @@ const cart: Module<CartState, RootState> = {
     }
   },
   actions: {
-    add({ commit, rootGetters }, product: Product): void {
+    add({ commit, state, rootGetters }, product: Product): void {
       const currency = rootGetters['ui/currency'] as CurrencyCode;
       const market = rootGetters['ui/market'] as Market | undefined;
       const unitPriceCents = product.prices[currency];
       if (!market || unitPriceCents == null) {
+        return;
+      }
+      const existing = state.lines.find((line) => line.productId === product.id);
+      if ((existing ? existing.qty : 0) + 1 > product.stock) {
         return;
       }
       commit('ADD_LINE', {
@@ -108,11 +105,9 @@ const cart: Module<CartState, RootState> = {
         pricesByProductId: pricesForCurrency(catalogItems, market.currency)
       });
       commit('SET_MARKET', market.id);
-      dispatch(
-        'ui/setNotice',
-        beforeCount > state.lines.length ? 'errors.LINE_DROPPED' : null,
-        { root: true }
-      );
+      dispatch('ui/setNotice', beforeCount > state.lines.length ? 'errors.LINE_DROPPED' : null, {
+        root: true
+      });
     },
     persist({ state }): void {
       persistCartSnapshot(state);

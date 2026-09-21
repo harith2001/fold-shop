@@ -10,7 +10,7 @@
       <router-link
         class="header__link header__cart"
         :to="{ name: 'cart' }"
-        :aria-label="$t('cart.itemsCount', { n: itemCount })"
+        :aria-label="$tc('cart.itemsCount', itemCount)"
       >
         {{ $t('nav.cart') }}
         <span class="header__badge">{{ itemCount }}</span>

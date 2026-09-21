@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
+import store from '@/store';
 import CatalogView from '@/views/CatalogView.vue';
 import ProductView from '@/views/ProductView.vue';
 import CartView from '@/views/CartView.vue';
@@ -19,8 +20,7 @@ const routes: RouteConfig[] = [
   {
     path: '/product/:id',
     name: 'product',
-    component: ProductView,
-    props: true
+    component: ProductView
   },
   {
     path: '/cart',
@@ -54,6 +54,14 @@ const routes: RouteConfig[] = [
 const router = new VueRouter({
   mode: 'history',
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta && to.meta.requiresCart && store.getters['cart/isEmpty']) {
+    next({ name: 'catalog' });
+  } else {
+    next();
+  }
 });
 
 export default router;

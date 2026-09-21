@@ -2,6 +2,7 @@
   <div id="app" class="app">
     <AppHeader />
     <main class="app__main">
+      <ErrorBanner v-if="notice" :message="$t(notice)" />
       <router-view />
     </main>
   </div>
@@ -9,12 +10,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex';
 import AppHeader from '@/components/AppHeader.vue';
+import ErrorBanner from '@/components/ErrorBanner.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
-    AppHeader
+    AppHeader,
+    ErrorBanner
+  },
+  computed: {
+    ...mapState('ui', ['notice'])
   }
 });
 </script>

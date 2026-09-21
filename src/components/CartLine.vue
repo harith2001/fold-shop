@@ -9,13 +9,7 @@
       <p v-if="line.promo" class="line__promo">{{ $t('product.promo') }}</p>
       <label class="line__qty">
         {{ $t('cart.qty') }}
-        <input
-          type="number"
-          :value="line.qty"
-          min="1"
-          :max="stock"
-          @change="onQtyChange"
-        />
+        <input type="number" :value="line.qty" min="1" :max="stock" @change="onQtyChange" />
       </label>
       <p v-if="qtyError" class="line__error" role="alert">
         {{ $t('cart.qtyError', { n: stock }) }}
@@ -67,7 +61,9 @@ export default Vue.extend({
     ...mapGetters('ui', ['locale']),
     ...mapGetters('catalog', ['byId']),
     stock(): number {
-      const product = (this.byId as (id: number) => Product | undefined)(this.line.productId);
+      const product = (this.$store.getters['catalog/byId'] as (id: number) => Product | undefined)(
+        this.line.productId
+      );
       return product ? product.stock : this.line.qty;
     }
   },

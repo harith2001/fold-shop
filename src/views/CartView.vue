@@ -10,7 +10,6 @@
       }}</router-link>
     </template>
     <template v-else>
-      <ErrorBanner v-if="notice" :message="$t(notice)" />
       <ul class="cart__lines">
         <li v-for="line in lines" :key="line.productId">
           <CartLineItem
@@ -27,6 +26,8 @@
         :subtotal-cents="subtotalCents"
         :discount-cents="discountCents"
         :payable-cents="payableCents"
+        :vat-cents="vatCents"
+        :show-vat="true"
       />
       <router-link class="cart__checkout" :to="{ name: 'checkout' }">{{
         $t('cart.checkout')
@@ -52,27 +53,36 @@ export default Vue.extend({
   },
   computed: {
     ...mapState('cart', ['lines']),
-    ...mapState('ui', ['notice']),
     ...mapState('catalog', {
       catalogLoading: 'loading',
       catalogError: 'error',
       catalogItems: 'items'
     }),
-    ...mapGetters('cart', ['isEmpty', 'subtotalCents', 'discountCents', 'payableCents']),
+    ...mapGetters('cart', [
+      'isEmpty',
+      'subtotalCents',
+      'discountCents',
+      'payableCents',
+      'vatCents'
+    ]),
     ...mapGetters('catalog', ['byId'])
   },
   created() {
-    if ((this.catalogItems as Product[]).length === 0) {
+    if (this.$store.state.catalog.items.length === 0) {
       this.$store.dispatch('catalog/fetchAll');
     }
   },
   methods: {
     lineName(line: CartLine): string {
-      const product = (this.byId as (id: number) => Product | undefined)(line.productId);
+      const product = (this.$store.getters['catalog/byId'] as (id: number) => Product | undefined)(
+        line.productId
+      );
       return product ? String(this.$t(product.nameKey)) : line.sku;
     },
     lineImage(line: CartLine): string {
-      const product = (this.byId as (id: number) => Product | undefined)(line.productId);
+      const product = (this.$store.getters['catalog/byId'] as (id: number) => Product | undefined)(
+        line.productId
+      );
       return product ? product.image : '';
     },
     onChangeQty(payload: { productId: number; qty: number }): void {

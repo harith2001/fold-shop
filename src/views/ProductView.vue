@@ -1,8 +1,8 @@
 <template>
   <section class="pdp">
     <h1 class="pdp__title">{{ title }}</h1>
-    <p v-if="loading" class="pdp__status">{{ $t('product.loading') }}</p>
-    <ErrorBanner v-else-if="error" :message="$t(error)" />
+    <p v-if="loading && !product" class="pdp__status">{{ $t('product.loading') }}</p>
+    <ErrorBanner v-else-if="error && !product" :message="$t(error)" />
     <p v-else-if="!product" class="pdp__status">{{ $t('product.empty') }}</p>
     <template v-else>
       <img class="pdp__image" :src="product.image" :alt="title" />
@@ -12,8 +12,17 @@
       </p>
       <label class="pdp__qty">
         {{ $t('product.qty') }}
-        <input v-model.number="qty" type="number" min="1" :max="product.stock" :disabled="outOfStock" />
+        <input
+          v-model.number="qty"
+          type="number"
+          min="1"
+          :max="product.stock"
+          :disabled="outOfStock"
+        />
       </label>
+      <p v-if="qtyError" class="pdp__status" role="alert">
+        {{ $t('cart.qtyError', { n: product.stock }) }}
+      </p>
       <button type="button" class="pdp__add" :disabled="outOfStock" @click="onAdd">
         {{ outOfStock ? $t('product.outOfStock') : $t('product.addToCart') }}
       </button>
@@ -44,10 +53,11 @@ export default Vue.extend({
     ErrorBanner,
     PriceTag
   },
-  data(): { requestId: number; qty: number } {
+  data(): { requestId: number; qty: number; qtyError: boolean } {
     return {
       requestId: 0,
-      qty: 1
+      qty: 1,
+      qtyError: false
     };
   },
   computed: {
@@ -57,10 +67,12 @@ export default Vue.extend({
     ...mapGetters('cart', ['lineByProductId']),
     product(): Product | undefined {
       const id = Number(this.$route.params.id);
-      return (this.byId as (id: number) => Product | undefined)(id);
+      return (this.$store.getters['catalog/byId'] as (id: number) => Product | undefined)(id);
     },
     title(): string {
-      return this.product ? String(this.$t(this.product.nameKey)) : String(this.$t('product.loading'));
+      return this.product
+        ? String(this.$t(this.product.nameKey))
+        : String(this.$t('product.loading'));
     },
     priceCents(): number {
       if (!this.product) {
@@ -75,8 +87,11 @@ export default Vue.extend({
       if (!this.product) {
         return [];
       }
-      return (this.byCategory as (category: Product['category']) => Product[])(this.product.category)
-        .filter((item) => item.id !== this.product!.id)
+      const current = this.product;
+      return (
+        this.$store.getters['catalog/byCategory'] as (category: Product['category']) => Product[]
+      )(current.category)
+        .filter((item) => item.id !== current.id)
         .slice(0, 3);
     }
   },
@@ -96,6 +111,7 @@ export default Vue.extend({
       const requestId = this.requestId + 1;
       this.requestId = requestId;
       this.qty = 1;
+      this.qtyError = false;
       await this.$store.dispatch('catalog/fetchOne', id);
       if (requestId !== this.requestId) {
         return;
@@ -105,13 +121,15 @@ export default Vue.extend({
       if (!this.product || this.outOfStock) {
         return;
       }
-      const existing = (this.lineByProductId as (id: number) => { qty: number } | undefined)(
-        this.product.id
-      );
+      const existing = (
+        this.$store.getters['cart/lineByProductId'] as (id: number) => { qty: number } | undefined
+      )(this.product.id);
       const nextQty = (existing ? existing.qty : 0) + Number(this.qty);
       if (nextQty > this.product.stock) {
+        this.qtyError = true;
         return;
       }
+      this.qtyError = false;
       this.$store.dispatch('cart/add', this.product);
       this.$store.dispatch('cart/setQty', { productId: this.product.id, qty: nextQty });
     }

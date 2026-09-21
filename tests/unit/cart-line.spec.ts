@@ -1,4 +1,4 @@
-import Vuex, { Store } from 'vuex';
+import Vuex from 'vuex';
 import VueI18n from 'vue-i18n';
 import { createLocalVue, mount } from '@vue/test-utils';
 import i18n from '@/i18n';
@@ -49,8 +49,7 @@ function createStore() {
           activeId: null
         }),
         getters: {
-          byId: (state: CatalogState) => (id: number) =>
-            state.items.find((item) => item.id === id)
+          byId: (state: CatalogState) => (id: number) => state.items.find((item) => item.id === id)
         }
       }
     }

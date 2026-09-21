@@ -1,7 +1,8 @@
 <template>
-  <section class="placeholder">
-    <h1>{{ $t('placeholder.orderSuccessTitle', { orderId }) }}</h1>
-    <p>{{ $t('placeholder.orderSuccessBody') }}</p>
+  <section class="outcome">
+    <h1>{{ $t('order.successTitle') }}</h1>
+    <p>{{ $t('order.successBody', { orderId }) }}</p>
+    <router-link :to="{ name: 'catalog' }">{{ $t('cart.continue') }}</router-link>
   </section>
 </template>
 
@@ -20,13 +21,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.placeholder h1 {
+.outcome h1 {
   margin: 0 0 0.5rem;
   font-size: 1.5rem;
-}
-
-.placeholder p {
-  margin: 0;
-  color: var(--color-ink-muted);
 }
 </style>

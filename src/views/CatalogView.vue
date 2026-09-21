@@ -2,9 +2,7 @@
   <section class="catalog">
     <h1 class="catalog__title">{{ $t('catalog.title') }}</h1>
     <p v-if="loading" class="catalog__status">{{ $t('catalog.loading') }}</p>
-    <p v-else-if="error" class="catalog__status catalog__status--error" role="alert">
-      {{ $t(error) }}
-    </p>
+    <ErrorBanner v-else-if="error" :message="$t(error)" />
     <template v-else>
       <div class="catalog__toolbar">
         <SearchInput v-model="query" />
@@ -53,6 +51,7 @@ import Vue from 'vue';
 import { mapGetters, mapState } from 'vuex';
 import ProductList from '@/components/ProductList.vue';
 import SearchInput from '@/components/SearchInput.vue';
+import ErrorBanner from '@/components/ErrorBanner.vue';
 import { filterCatalog } from '@/domain/filters';
 import type { CatalogSort } from '@/domain/filters';
 import type { CurrencyCode, Product } from '@/domain/types';
@@ -63,7 +62,8 @@ export default Vue.extend({
   name: 'CatalogView',
   components: {
     ProductList,
-    SearchInput
+    SearchInput,
+    ErrorBanner
   },
   data(): {
     category: Product['category'] | null;

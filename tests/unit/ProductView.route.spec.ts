@@ -61,7 +61,8 @@ function createStore(): Store<RootState> {
         },
         actions: {
           add: jest.fn(),
-          setQty: jest.fn()
+          setQty: jest.fn(),
+          reprice: jest.fn()
         }
       }
     }

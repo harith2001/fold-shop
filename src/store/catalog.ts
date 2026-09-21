@@ -21,6 +21,8 @@ function upsertProduct(items: Product[], product: Product): Product[] {
   return next;
 }
 
+let fetchOneSeq = 0;
+
 const catalog: Module<CatalogState, RootState> = {
   namespaced: true,
   state: (): CatalogState => ({
@@ -44,12 +46,16 @@ const catalog: Module<CatalogState, RootState> = {
     }
   },
   actions: {
-    async fetchAll({ commit }) {
+    async fetchAll({ commit, dispatch, rootGetters, rootState }) {
       commit('SET_LOADING', true);
       commit('SET_ERROR', null);
       try {
         const items = await fetchAllProducts();
         commit('SET_ITEMS', items);
+        const market = rootGetters['ui/market'] as { id?: string } | undefined;
+        if (market && market.id && (rootState as { cart?: unknown }).cart) {
+          await dispatch('cart/reprice', market.id, { root: true });
+        }
       } catch {
         commit('SET_ERROR', 'errors.CATALOG_LOAD');
       } finally {
@@ -57,16 +63,25 @@ const catalog: Module<CatalogState, RootState> = {
       }
     },
     async fetchOne({ commit, state }, id: number) {
+      const seq = (fetchOneSeq += 1);
       commit('SET_LOADING', true);
       commit('SET_ERROR', null);
       try {
         const product = await fetchOneProduct(id);
+        if (seq !== fetchOneSeq) {
+          return;
+        }
         commit('SET_ITEMS', upsertProduct(state.items, product));
         commit('SET_ACTIVE', id);
       } catch {
+        if (seq !== fetchOneSeq) {
+          return;
+        }
         commit('SET_ERROR', 'errors.PRODUCT_LOAD');
       } finally {
-        commit('SET_LOADING', false);
+        if (seq === fetchOneSeq) {
+          commit('SET_LOADING', false);
+        }
       }
     }
   },

@@ -8,9 +8,7 @@
     </div>
     <div v-if="discountCents > 0" class="summary__row">
       <dt>{{ $t('cart.discount') }}</dt>
-      <dd>
-        −<PriceTag :cents="discountCents" :locale="locale" :currency="currency" />
-      </dd>
+      <dd>−<PriceTag :cents="discountCents" :locale="locale" :currency="currency" /></dd>
     </div>
     <div v-if="showVat" class="summary__row">
       <dt>{{ $t('cart.vat') }}</dt>

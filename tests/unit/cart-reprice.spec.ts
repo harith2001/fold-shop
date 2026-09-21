@@ -64,9 +64,7 @@ describe('cart reprice on market switch', () => {
 
     await store.dispatch('ui/setMarket', 'NL');
 
-    expect(store.state.cart.lines).toEqual([
-      line({ unitPriceCents: 9900, currency: 'EUR' })
-    ]);
+    expect(store.state.cart.lines).toEqual([line({ unitPriceCents: 9900, currency: 'EUR' })]);
     expect(store.state.cart.marketId).toBe('NL');
   });
 
