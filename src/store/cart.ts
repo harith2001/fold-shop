@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import type { Module } from 'vuex';
 import { addLine, reprice, setQty } from '@/domain/cart';
 import { discount, payable, subtotal } from '@/domain/money';
@@ -70,8 +71,7 @@ const cart: Module<CartState, RootState> = {
       if (index === -1) {
         return;
       }
-      // Vue 2 cannot observe a new property assigned onto a reactive object.
-      (state.lines[index] as CartLine & { promo?: boolean }).promo = true;
+      Vue.set(state.lines[index], 'promo', true);
     }
   },
   actions: {
