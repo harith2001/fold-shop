@@ -1,12 +1,7 @@
 <template>
   <label class="search">
     {{ $t('catalog.searchLabel') }}
-    <input
-      class="search__input"
-      type="search"
-      :value="value"
-      @input="onInput"
-    />
+    <input class="search__input" type="search" :value="value" @input="onInput" />
   </label>
 </template>
 

@@ -71,7 +71,7 @@ describe('MarketSwitcher', () => {
 
     expect(confirm).not.toHaveBeenCalled();
     expect(dispatch).not.toHaveBeenCalledWith('ui/setMarket', 'NL');
-    expect(wrapper.text()).toContain('Prices will reprint for the Netherlands.');
+    expect(wrapper.text()).toContain('Prices will reprint in Netherlands.');
 
     await wrapper
       .findAll('button')
@@ -79,7 +79,7 @@ describe('MarketSwitcher', () => {
       .at(0)
       .trigger('click');
     expect(dispatch).not.toHaveBeenCalledWith('ui/setMarket', 'NL');
-    expect(wrapper.text()).not.toContain('Prices will reprint for the Netherlands.');
+    expect(wrapper.text()).not.toContain('Prices will reprint in Netherlands.');
 
     await optionButton(wrapper, 'NL').at(0).trigger('click');
     await wrapper
