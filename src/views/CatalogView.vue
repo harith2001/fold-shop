@@ -10,37 +10,25 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex';
 import ProductList from '@/components/ProductList.vue';
-import { fetchAll } from '@/api/products';
-import type { Product } from '@/domain/types';
 
 export default Vue.extend({
   name: 'CatalogView',
   components: {
     ProductList
   },
-  data() {
-    return {
-      products: [] as Product[],
-      loading: false,
-      error: null as string | null
-    };
+  computed: {
+    ...mapState('catalog', {
+      products: 'items',
+      loading: 'loading',
+      error: 'error'
+    })
   },
   created() {
-    this.load();
+    this.$store.dispatch('catalog/fetchAll');
   },
   methods: {
-    async load(): Promise<void> {
-      this.loading = true;
-      this.error = null;
-      try {
-        this.products = await fetchAll();
-      } catch {
-        this.error = 'Could not load the catalog.';
-      } finally {
-        this.loading = false;
-      }
-    },
     onAdd(): void {
       // Cart wiring lands in S08 / S10. Emit path exists so ProductCard stays honest.
     }
