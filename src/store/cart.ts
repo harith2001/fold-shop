@@ -64,6 +64,14 @@ const cart: Module<CartState, RootState> = {
     },
     SET_MARKET(state, marketId: CartState['marketId']) {
       state.marketId = marketId;
+    },
+    APPLY_PROMO(state, productId: number) {
+      const index = state.lines.findIndex((line) => line.productId === productId);
+      if (index === -1) {
+        return;
+      }
+      // Vue 2 cannot observe a new property assigned onto a reactive object.
+      (state.lines[index] as CartLine & { promo?: boolean }).promo = true;
     }
   },
   actions: {
@@ -123,6 +131,9 @@ const cart: Module<CartState, RootState> = {
     },
     clear({ commit }): void {
       commit('CLEAR');
+    },
+    applyPromo({ commit }, productId: number): void {
+      commit('APPLY_PROMO', productId);
     }
   },
   getters: {

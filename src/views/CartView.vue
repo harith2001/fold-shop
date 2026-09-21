@@ -19,6 +19,7 @@
             :image="lineImage(line)"
             @change-qty="onChangeQty"
             @remove="onRemove"
+            @apply-promo="onApplyPromo"
           />
         </li>
       </ul>
@@ -79,6 +80,9 @@ export default Vue.extend({
     },
     onRemove(productId: number): void {
       this.$store.dispatch('cart/remove', productId);
+    },
+    onApplyPromo(productId: number): void {
+      this.$store.dispatch('cart/applyPromo', productId);
     }
   }
 });

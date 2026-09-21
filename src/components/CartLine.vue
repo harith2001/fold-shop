@@ -23,6 +23,14 @@
       <button class="line__remove" type="button" @click="$emit('remove', line.productId)">
         {{ $t('cart.remove') }}
       </button>
+      <button
+        class="line__promo-btn"
+        type="button"
+        :disabled="Boolean(line.promo)"
+        @click="$emit('apply-promo', line.productId)"
+      >
+        {{ $t('cart.applyPromo') }}
+      </button>
     </div>
   </article>
 </template>
