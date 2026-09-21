@@ -1,0 +1,140 @@
+{
+  "markets": [
+    {
+      "id": "GB",
+      "locale": "en-GB",
+      "currency": "GBP",
+      "vatBps": 2000,
+      "pricesIncludeVat": true
+    },
+    {
+      "id": "NL",
+      "locale": "nl-NL",
+      "currency": "EUR",
+      "vatBps": 2100,
+      "pricesIncludeVat": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "sku": "fold-bag-01",
+      "slug": "fold-bag-01",
+      "nameKey": "products.fold-bag-01.name",
+      "descriptionKey": "products.fold-bag-01.description",
+      "category": "bags",
+      "image": "/images/fold-bag-01.svg",
+      "prices": { "GBP": 8900, "EUR": 9900 },
+      "stock": 12,
+      "weightGrams": 420
+    },
+    {
+      "id": 2,
+      "sku": "fold-bag-02",
+      "slug": "fold-bag-02",
+      "nameKey": "products.fold-bag-02.name",
+      "descriptionKey": "products.fold-bag-02.description",
+      "category": "bags",
+      "image": "/images/fold-bag-02.svg",
+      "prices": { "GBP": 12500, "EUR": 13900 },
+      "stock": 4,
+      "weightGrams": 680
+    },
+    {
+      "id": 3,
+      "sku": "light-front",
+      "slug": "light-front",
+      "nameKey": "products.light-front.name",
+      "descriptionKey": "products.light-front.description",
+      "category": "lights",
+      "image": "/images/light-front.svg",
+      "prices": { "GBP": 3500, "EUR": 3900 },
+      "stock": 20,
+      "weightGrams": 85
+    },
+    {
+      "id": 4,
+      "sku": "light-rear",
+      "slug": "light-rear",
+      "nameKey": "products.light-rear.name",
+      "descriptionKey": "products.light-rear.description",
+      "category": "lights",
+      "image": "/images/light-rear.svg",
+      "prices": { "GBP": 2900, "EUR": 3200 },
+      "stock": 20,
+      "weightGrams": 70
+    },
+    {
+      "id": 5,
+      "sku": "rack-rear",
+      "slug": "rack-rear",
+      "nameKey": "products.rack-rear.name",
+      "descriptionKey": "products.rack-rear.description",
+      "category": "racks",
+      "image": "/images/rack-rear.svg",
+      "prices": { "GBP": 7900, "EUR": 8900 },
+      "stock": 6,
+      "weightGrams": 920
+    },
+    {
+      "id": 6,
+      "sku": "cover-night",
+      "slug": "cover-night",
+      "nameKey": "products.cover-night.name",
+      "descriptionKey": "products.cover-night.description",
+      "category": "covers",
+      "image": "/images/cover-night.svg",
+      "prices": { "GBP": 4500, "EUR": 4900 },
+      "stock": 8,
+      "weightGrams": 310
+    },
+    {
+      "id": 7,
+      "sku": "cover-rain",
+      "slug": "cover-rain",
+      "nameKey": "products.cover-rain.name",
+      "descriptionKey": "products.cover-rain.description",
+      "category": "covers",
+      "image": "/images/cover-rain.svg",
+      "prices": { "GBP": 5200, "EUR": 5800 },
+      "stock": 0,
+      "weightGrams": 340
+    },
+    {
+      "id": 8,
+      "sku": "light-set",
+      "slug": "light-set",
+      "nameKey": "products.light-set.name",
+      "descriptionKey": "products.light-set.description",
+      "category": "lights",
+      "image": "/images/light-set.svg",
+      "prices": { "GBP": 5900, "EUR": 6500 },
+      "stock": 10,
+      "weightGrams": 150
+    },
+    {
+      "id": 9,
+      "sku": "bag-mini",
+      "slug": "bag-mini",
+      "nameKey": "products.bag-mini.name",
+      "descriptionKey": "products.bag-mini.description",
+      "category": "bags",
+      "image": "/images/bag-mini.svg",
+      "prices": { "GBP": 4900, "EUR": 5500 },
+      "stock": 15,
+      "weightGrams": 180
+    },
+    {
+      "id": 10,
+      "sku": "rack-front",
+      "slug": "rack-front",
+      "nameKey": "products.rack-front.name",
+      "descriptionKey": "products.rack-front.description",
+      "category": "racks",
+      "image": "/images/rack-front.svg",
+      "prices": { "GBP": 6400, "EUR": 7200 },
+      "stock": 3,
+      "weightGrams": 540
+    }
+  ]
+}
