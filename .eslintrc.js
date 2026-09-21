@@ -13,10 +13,14 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
-  rules: {},
+  rules: {
+    'vue/no-v-html': 'error',
+    'vue/require-prop-types': 'error',
+    'vue/require-default-prop': 'error'
+  },
   overrides: [
     {
-      files: ['tests/**/*.spec.ts'],
+      files: ['tests/**/*.spec.{ts,tsx}', 'tests/setup.ts'],
       env: {
         jest: true
       }

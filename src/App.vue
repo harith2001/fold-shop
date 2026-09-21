@@ -24,5 +24,6 @@ export default Vue.extend({
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
+  color: var(--color-ink);
 }
 </style>
