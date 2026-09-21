@@ -5,7 +5,6 @@
       class="search__input"
       type="search"
       :value="value"
-      :placeholder="$t('catalog.search')"
       @input="onInput"
     />
   </label>
@@ -33,13 +32,22 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .search {
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  align-items: baseline;
+  gap: 0.65rem;
   color: var(--color-ink-muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .search__input {
-  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
   min-width: 10rem;
+  color: var(--color-ink);
 }
 </style>

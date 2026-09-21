@@ -89,57 +89,78 @@ export default Vue.extend({
 .line {
   display: grid;
   grid-template-columns: 5.5rem 1fr;
-  gap: 0.75rem;
-  padding: 0.75rem 0;
+  gap: 1rem;
+  padding: 1.15rem 0;
   border-bottom: 1px solid var(--color-line);
 }
 
 .line__image {
   width: 5.5rem;
   height: 5.5rem;
-  object-fit: cover;
-  background: var(--color-line);
+  object-fit: contain;
+  padding: 0.4rem;
+  background: var(--color-paper-plate);
+  border: 1px solid var(--color-line);
 }
 
 .line__body {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  align-items: flex-start;
+  gap: 0.25rem;
 }
 
 .line__name {
   margin: 0;
-  font-size: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 .line__price,
 .line__promo {
   margin: 0;
   color: var(--color-ink-muted);
+  font-size: 0.875rem;
 }
 
 .line__qty {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
 }
 
 .line__qty input {
-  width: 4rem;
+  width: 3.5rem;
   font: inherit;
+  color: var(--color-ink);
 }
 
 .line__error {
   margin: 0;
-  color: var(--color-accent);
+  color: var(--color-mark);
 }
 
-.line__remove {
+.line__remove,
+.line__promo-btn {
   align-self: flex-start;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--color-line);
-  background: var(--color-paper);
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
   color: var(--color-ink);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
   cursor: pointer;
+
+  &:disabled {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    cursor: not-allowed;
+  }
 }
 </style>

@@ -17,8 +17,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .placeholder h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
+  margin: 0 0 0.65rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .placeholder p {

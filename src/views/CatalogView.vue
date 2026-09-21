@@ -41,7 +41,7 @@
         </label>
       </div>
       <p v-if="filteredProducts.length === 0" class="catalog__status">{{ $t('catalog.empty') }}</p>
-      <ProductList v-else :products="filteredProducts" @add="onAdd" />
+      <ProductList v-else :products="filteredProducts" :lead="lookbookLead" @add="onAdd" />
     </template>
   </section>
 </template>
@@ -101,6 +101,9 @@ export default Vue.extend({
         nameOf: (product) => String(this.$t(product.nameKey)),
         query: this.search
       });
+    },
+    lookbookLead(): boolean {
+      return this.category === null && !this.inStockOnly && this.search.trim() === '';
     }
   },
   watch: {
@@ -132,36 +135,44 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .catalog__title {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin: 0 0 1.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .catalog__toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1.25rem;
-  margin: 0 0 1.25rem;
+  gap: 0.85rem 1.5rem;
+  margin: 0 0 2.5rem;
 }
 
 .catalog__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.15rem 1.1rem;
 }
 
 .catalog__chip {
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--color-line);
-  background: var(--color-paper);
-  color: var(--color-ink);
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-ink-muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
+  box-shadow: inset 0 -1px 0 transparent;
 
   &[aria-pressed='true'] {
-    border-color: var(--color-ink);
-    background: var(--color-ink);
-    color: var(--color-paper);
+    color: var(--color-ink);
+    box-shadow: inset 0 -1px 0 var(--color-ink);
   }
 }
 
@@ -169,8 +180,9 @@ export default Vue.extend({
 .catalog__stock {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   color: var(--color-ink-muted);
+  font-size: 0.8125rem;
 }
 
 .catalog__sort select {
@@ -180,9 +192,5 @@ export default Vue.extend({
 .catalog__status {
   margin: 0;
   color: var(--color-ink-muted);
-}
-
-.catalog__status--error {
-  color: var(--color-accent);
 }
 </style>

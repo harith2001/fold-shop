@@ -2,10 +2,10 @@
   "_comment": "Dutch is interview-demo quality.",
   "catalog": {
     "title": "Catalogus",
-    "empty": "Geen producten gevonden.",
-    "loading": "Laden…",
-    "search": "Zoeken",
-    "searchLabel": "Producten zoeken",
+    "empty": "Niets in dit nummer komt overeen.",
+    "loading": "De platen worden gezet…",
+    "search": "Zoek",
+    "searchLabel": "Zoek",
     "filterAll": "Alle",
     "sortLabel": "Sorteren",
     "sortCatalog": "Catalogusvolgorde",
@@ -24,8 +24,8 @@
     "addToCart": "In winkelwagen",
     "outOfStock": "Niet op voorraad",
     "qty": "Aantal",
-    "related": "Vergelijkbare producten",
-    "loading": "Product laden…",
+    "related": "Ook in deze categorie",
+    "loading": "Dit stuk wordt gezocht…",
     "empty": "Product niet gevonden.",
     "promo": "Actie toegepast"
   },
@@ -72,7 +72,9 @@
     "LINE_DROPPED": "Sommige artikelen zijn verwijderd omdat ze geen prijs hebben in deze markt."
   },
   "market": {
-    "confirm": "Prijzen worden bijgewerkt naar de nieuwe markt."
+    "confirm": "Prijzen worden opnieuw gezet voor {market}.",
+    "reprint": "Opnieuw zetten",
+    "keep": "Behouden"
   },
   "header": {
     "logo": "Fold Shop",

@@ -1,10 +1,10 @@
 {
   "catalog": {
     "title": "Catalog",
-    "empty": "No products found.",
-    "loading": "Loading…",
-    "search": "Search",
-    "searchLabel": "Search products",
+    "empty": "Nothing in this issue matches.",
+    "loading": "Setting the plates…",
+    "search": "Find",
+    "searchLabel": "Find",
     "filterAll": "All",
     "sortLabel": "Sort",
     "sortCatalog": "Catalog order",
@@ -23,8 +23,8 @@
     "addToCart": "Add to cart",
     "outOfStock": "Out of stock",
     "qty": "Quantity",
-    "related": "Related products",
-    "loading": "Loading product…",
+    "related": "Also in this category",
+    "loading": "Finding this piece…",
     "empty": "Product not found.",
     "promo": "Promo applied"
   },
@@ -71,7 +71,9 @@
     "LINE_DROPPED": "Some items were removed because they have no price in this market."
   },
   "market": {
-    "confirm": "Prices will update to the new market."
+    "confirm": "Prices will reprint for the {market}.",
+    "reprint": "Reprint",
+    "keep": "Keep"
   },
   "header": {
     "logo": "Fold Shop",

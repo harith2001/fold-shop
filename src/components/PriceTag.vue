@@ -1,5 +1,5 @@
 <template>
-  <span>{{ formatted }}</span>
+  <span class="price">{{ formatted }}</span>
 </template>
 
 <script lang="ts">
@@ -30,3 +30,10 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.price {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+</style>

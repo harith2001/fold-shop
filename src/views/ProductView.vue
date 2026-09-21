@@ -1,31 +1,39 @@
 <template>
   <section class="pdp">
-    <h1 class="pdp__title">{{ title }}</h1>
-    <p v-if="loading && !product" class="pdp__status">{{ $t('product.loading') }}</p>
-    <ErrorBanner v-else-if="error && !product" :message="$t(error)" />
-    <p v-else-if="!product" class="pdp__status">{{ $t('product.empty') }}</p>
-    <template v-else>
-      <img class="pdp__image" :src="product.image" :alt="title" />
-      <p class="pdp__description">{{ $t(product.descriptionKey) }}</p>
-      <p class="pdp__price">
-        <PriceTag :cents="priceCents" :locale="locale" :currency="currency" />
-      </p>
-      <label class="pdp__qty">
-        {{ $t('product.qty') }}
-        <input
-          v-model.number="qty"
-          type="number"
-          min="1"
-          :max="product.stock"
-          :disabled="outOfStock"
-        />
-      </label>
-      <p v-if="qtyError" class="pdp__status" role="alert">
-        {{ $t('cart.qtyError', { n: product.stock }) }}
-      </p>
-      <button type="button" class="pdp__add" :disabled="outOfStock" @click="onAdd">
-        {{ outOfStock ? $t('product.outOfStock') : $t('product.addToCart') }}
-      </button>
+    <h1 v-if="!product" class="pdp__title">
+      {{ loading ? $t('product.loading') : $t('product.empty') }}
+    </h1>
+    <ErrorBanner v-if="error && !product" :message="$t(error)" />
+    <template v-if="product">
+      <div class="pdp__spread">
+        <div class="pdp__plate">
+          <img class="pdp__image" :src="product.image" :alt="title" />
+        </div>
+        <div class="pdp__caption">
+          <h1 class="pdp__title">{{ title }}</h1>
+          <p class="pdp__sku">{{ product.sku }}</p>
+          <p class="pdp__description">{{ $t(product.descriptionKey) }}</p>
+          <p class="pdp__price">
+            <PriceTag :cents="priceCents" :locale="locale" :currency="currency" />
+          </p>
+          <label class="pdp__qty">
+            {{ $t('product.qty') }}
+            <input
+              v-model.number="qty"
+              type="number"
+              min="1"
+              :max="product.stock"
+              :disabled="outOfStock"
+            />
+          </label>
+          <p v-if="qtyError" class="pdp__status" role="alert">
+            {{ $t('cart.qtyError', { n: product.stock }) }}
+          </p>
+          <button type="button" class="pdp__add" :disabled="outOfStock" @click="onAdd">
+            {{ outOfStock ? $t('product.outOfStock') : $t('product.addToCart') }}
+          </button>
+        </div>
+      </div>
       <section v-if="related.length" class="pdp__related">
         <h2>{{ $t('product.related') }}</h2>
         <ul>
@@ -138,44 +146,97 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.pdp__spread {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .pdp__spread {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
 .pdp__title {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  max-width: 38rem;
+}
+
+.pdp__plate {
+  background: var(--color-paper-plate);
+  border: 1px solid var(--color-line);
 }
 
 .pdp__image {
-  width: min(100%, 28rem);
-  height: auto;
-  background: var(--color-line);
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  padding: 2rem;
 }
 
+.pdp__caption {
+  max-width: 38rem;
+}
+
+.pdp__sku,
 .pdp__description,
 .pdp__status,
 .pdp__price {
-  margin: 0.75rem 0;
+  margin: 0 0 0.85rem;
+}
+
+.pdp__sku {
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+}
+
+.pdp__description {
+  line-height: 1.55;
 }
 
 .pdp__status {
   color: var(--color-ink-muted);
 }
 
+.pdp__price {
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
 .pdp__qty {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin: 0 0 0.75rem;
+  gap: 0.65rem;
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .pdp__qty input {
-  width: 4rem;
+  width: 3.5rem;
   font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-ink);
 }
 
 .pdp__add {
-  padding: 0.5rem 0.9rem;
+  min-height: 44px;
+  padding: 0.7rem 1.4rem;
   border: 1px solid var(--color-ink);
   background: var(--color-ink);
-  color: var(--color-paper);
+  color: var(--color-paper-plate);
   cursor: pointer;
 
   &:disabled {
@@ -185,7 +246,18 @@ export default Vue.extend({
 }
 
 .pdp__related {
-  margin-top: 2rem;
+  margin-top: 3.5rem;
+  max-width: 38rem;
+
+  h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
 
   ul {
     list-style: none;
@@ -193,7 +265,19 @@ export default Vue.extend({
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
+  }
+
+  a {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
   }
 }
 </style>

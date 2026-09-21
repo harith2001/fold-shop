@@ -28,12 +28,19 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .app {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 0 1rem 2rem;
+  min-height: 100vh;
 }
 
 .app__main {
-  min-height: 50vh;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4.5rem;
+}
+
+@media (min-width: 1100px) {
+  .app__main {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 </style>

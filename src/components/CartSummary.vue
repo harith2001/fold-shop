@@ -65,15 +65,19 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .summary {
-  margin: 1rem 0 0;
+  margin: 2.5rem 0 0;
   padding: 0;
+  max-width: 24rem;
+  margin-left: auto;
 }
 
 .summary__row {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
 
   dt,
   dd {
@@ -82,8 +86,10 @@ export default Vue.extend({
 }
 
 .summary__row--payable {
-  font-weight: 600;
-  padding-top: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-ink);
+  padding-top: 0.65rem;
   border-top: 1px solid var(--color-line);
 }
 </style>

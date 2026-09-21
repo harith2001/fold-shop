@@ -32,10 +32,8 @@ function createStore(itemCount = 0): Store<RootState> {
   });
 }
 
-function changeSelect(wrapper: Wrapper<Vue>, marketId: string) {
-  const select = wrapper.find('select');
-  (select.element as HTMLSelectElement).value = marketId;
-  return select.trigger('change');
+function optionButton(wrapper: Wrapper<Vue>, marketId: string) {
+  return wrapper.findAll('button').filter((button) => button.text() === marketId);
 }
 
 describe('MarketSwitcher', () => {
@@ -43,7 +41,7 @@ describe('MarketSwitcher', () => {
     i18n.locale = 'en-GB';
   });
 
-  it('dispatches ui/setMarket with NL then GB when the select changes', async () => {
+  it('dispatches ui/setMarket with NL then GB when the options are pressed', async () => {
     const store = createStore();
     const dispatch = jest.spyOn(store, 'dispatch');
     const wrapper = mount(MarketSwitcher, {
@@ -52,15 +50,15 @@ describe('MarketSwitcher', () => {
       i18n
     });
 
-    await changeSelect(wrapper, 'NL');
+    await optionButton(wrapper, 'NL').at(0).trigger('click');
     expect(dispatch).toHaveBeenCalledWith('ui/setMarket', 'NL');
 
-    await changeSelect(wrapper, 'GB');
+    await optionButton(wrapper, 'GB').at(0).trigger('click');
     expect(dispatch).toHaveBeenCalledWith('ui/setMarket', 'GB');
   });
 
-  it('confirms before switching when the cart is not empty and cancel restores the select', async () => {
-    const confirm = jest.spyOn(window, 'confirm').mockReturnValue(false);
+  it('asks for a reprint instead of window.confirm when the cart is not empty', async () => {
+    const confirm = jest.spyOn(window, 'confirm');
     const store = createStore(1);
     const dispatch = jest.spyOn(store, 'dispatch');
     const wrapper = mount(MarketSwitcher, {
@@ -69,11 +67,27 @@ describe('MarketSwitcher', () => {
       i18n
     });
 
-    await changeSelect(wrapper, 'NL');
+    await optionButton(wrapper, 'NL').at(0).trigger('click');
 
-    expect(confirm).toHaveBeenCalled();
+    expect(confirm).not.toHaveBeenCalled();
     expect(dispatch).not.toHaveBeenCalledWith('ui/setMarket', 'NL');
-    expect((wrapper.find('select').element as HTMLSelectElement).value).toBe('GB');
+    expect(wrapper.text()).toContain('Prices will reprint for the Netherlands.');
+
+    await wrapper
+      .findAll('button')
+      .filter((button) => button.text() === 'Keep')
+      .at(0)
+      .trigger('click');
+    expect(dispatch).not.toHaveBeenCalledWith('ui/setMarket', 'NL');
+    expect(wrapper.text()).not.toContain('Prices will reprint for the Netherlands.');
+
+    await optionButton(wrapper, 'NL').at(0).trigger('click');
+    await wrapper
+      .findAll('button')
+      .filter((button) => button.text() === 'Reprint')
+      .at(0)
+      .trigger('click');
+    expect(dispatch).toHaveBeenCalledWith('ui/setMarket', 'NL');
     confirm.mockRestore();
   });
 });

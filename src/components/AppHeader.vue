@@ -1,22 +1,26 @@
 <template>
   <header class="header">
-    <router-link class="header__logo" :to="{ name: 'catalog' }">{{
-      $t('header.logo')
-    }}</router-link>
-    <nav class="header__nav" :aria-label="$t('header.nav')">
-      <router-link class="header__link" :to="{ name: 'catalog' }">{{
-        $t('nav.catalog')
+    <div class="header__inner">
+      <router-link class="header__logo" :to="{ name: 'catalog' }">{{
+        $t('header.logo')
       }}</router-link>
-      <router-link
-        class="header__link header__cart"
-        :to="{ name: 'cart' }"
-        :aria-label="$tc('cart.itemsCount', itemCount)"
-      >
-        {{ $t('nav.cart') }}
-        <span class="header__badge">{{ itemCount }}</span>
-      </router-link>
-      <MarketSwitcher />
-    </nav>
+      <nav class="header__nav" :aria-label="$t('header.nav')">
+        <router-link class="header__link" :to="{ name: 'catalog' }">{{
+          $t('nav.catalog')
+        }}</router-link>
+        <router-link
+          class="header__link header__cart"
+          :to="{ name: 'cart' }"
+          :aria-label="$tc('cart.itemsCount', itemCount)"
+        >
+          {{ $t('nav.cart') }}
+          <span class="header__count" :class="{ 'header__count--live': itemCount > 0 }">{{
+            itemCount
+          }}</span>
+        </router-link>
+        <MarketSwitcher />
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -38,64 +42,86 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
   border-bottom: 1px solid var(--color-line);
-  margin-bottom: 1.5rem;
+}
+
+.header__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.85rem 1.5rem;
+}
+
+@media (min-width: 1100px) {
+  .header__inner {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .header__logo {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
   letter-spacing: -0.02em;
+  line-height: 1.1;
   color: var(--color-ink);
   text-decoration: none;
 
   &:hover,
   &:focus-visible {
     text-decoration: none;
-    color: var(--color-accent);
+    color: var(--color-ink);
   }
 }
 
 .header__nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem 1.35rem;
 }
 
 .header__cart {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
+  min-height: 44px;
 }
 
-.header__badge {
-  min-width: 1.25rem;
-  padding: 0 0.3rem;
-  border-radius: 999px;
-  background: var(--color-accent);
-  color: var(--color-paper);
-  font-size: 0.75rem;
-  line-height: 1.25rem;
-  text-align: center;
+.header__count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.header__count--live {
+  color: var(--color-mark);
 }
 
 .header__link {
   color: var(--color-ink-muted);
   text-decoration: none;
+  font-size: 0.6875rem;
   font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 
   &.router-link-exact-active {
     color: var(--color-ink);
+    box-shadow: inset 0 -1px 0 var(--color-ink);
   }
 
   &:hover,
   &:focus-visible {
-    color: var(--color-accent);
+    color: var(--color-ink);
+    text-decoration: none;
   }
 }
 </style>

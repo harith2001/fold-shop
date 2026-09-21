@@ -100,8 +100,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .cart__title {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
+  margin: 0 0 1.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .cart__status {
@@ -115,23 +119,30 @@ export default Vue.extend({
   padding: 0;
 }
 
-.cart__cta,
-.cart__checkout {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid var(--color-ink);
-  background: var(--color-ink);
-  color: var(--color-paper);
-  text-decoration: none;
+.cart__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.5rem;
+  color: var(--color-ink);
 }
 
-.cart__checkout:hover,
-.cart__checkout:focus-visible,
-.cart__cta:hover,
-.cart__cta:focus-visible {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
+.cart__checkout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper-plate);
   text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+    color: var(--color-paper-plate);
+  }
 }
 </style>

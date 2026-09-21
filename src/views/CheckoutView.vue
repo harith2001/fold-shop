@@ -111,8 +111,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .checkout__title {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
+  margin: 0 0 1.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .checkout__status {
@@ -122,7 +126,7 @@ export default Vue.extend({
 .checkout__form {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1.1rem;
   max-width: 24rem;
 }
 
@@ -130,24 +134,44 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
 }
 
 .checkout__form input,
 .checkout__form select {
-  font: inherit;
-  padding: 0.35rem 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-ink);
+}
+
+.checkout__review {
+  max-width: none;
 }
 
 .checkout__review h2 {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
+  margin: 1.25rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
 }
 
 .checkout__pay {
-  padding: 0.6rem 0.9rem;
+  min-height: 44px;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.4rem;
   border: 1px solid var(--color-ink);
   background: var(--color-ink);
-  color: var(--color-paper);
+  color: var(--color-paper-plate);
   cursor: pointer;
 
   &:disabled {

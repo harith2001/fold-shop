@@ -113,14 +113,14 @@ describe('CatalogView', () => {
     expect(dispatch).toHaveBeenCalledWith('catalog/fetchAll');
   });
 
-  it('shows Loading… while mapped loading is true', async () => {
+  it('shows Setting the plates… while mapped loading is true', async () => {
     mockFetchAll.mockReturnValue(new Promise(() => undefined));
     const store = createStore();
 
     const wrapper = mountCatalog(store);
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.text()).toContain('Loading…');
+    expect(wrapper.text()).toContain('Setting the plates…');
     expect(wrapper.findComponent({ name: 'ProductList' }).exists()).toBe(false);
     expect(wrapper.find('.catalog__toolbar').exists()).toBe(false);
   });
@@ -149,7 +149,7 @@ describe('CatalogView', () => {
     const list = wrapper.findComponent({ name: 'ProductList' });
     expect(list.exists()).toBe(true);
     expect(list.props('products')).toEqual([sampleProduct]);
-    expect(wrapper.text()).not.toContain('Loading…');
+    expect(wrapper.text()).not.toContain('Setting the plates…');
   });
 
   it('drops cover-rain from ProductList when the in-stock toggle is checked', async () => {
@@ -195,7 +195,7 @@ describe('CatalogView', () => {
 
     await wrapper.find('input[type="checkbox"]').setChecked();
 
-    expect(wrapper.text()).toContain('No products found.');
+    expect(wrapper.text()).toContain('Nothing in this issue matches.');
     expect(wrapper.findComponent({ name: 'ProductList' }).exists()).toBe(false);
     expect(wrapper.find('.catalog__toolbar').exists()).toBe(true);
   });
