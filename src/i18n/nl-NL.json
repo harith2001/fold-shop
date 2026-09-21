@@ -3,7 +3,20 @@
   "catalog": {
     "title": "Catalogus",
     "empty": "Geen producten gevonden.",
-    "loading": "Laden…"
+    "loading": "Laden…",
+    "filterAll": "Alle",
+    "sortLabel": "Sorteren",
+    "sortCatalog": "Catalogusvolgorde",
+    "sortPriceAsc": "Prijs: laag naar hoog",
+    "sortPriceDesc": "Prijs: hoog naar laag",
+    "sortName": "Naam",
+    "inStockOnly": "Alleen op voorraad",
+    "categories": {
+      "bags": "Tassen",
+      "lights": "Verlichting",
+      "racks": "Rekken",
+      "covers": "Hoezen"
+    }
   },
   "product": {
     "addToCart": "In winkelwagen",

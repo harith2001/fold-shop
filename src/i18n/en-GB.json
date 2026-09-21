@@ -2,7 +2,20 @@
   "catalog": {
     "title": "Catalog",
     "empty": "No products found.",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "filterAll": "All",
+    "sortLabel": "Sort",
+    "sortCatalog": "Catalog order",
+    "sortPriceAsc": "Price: low to high",
+    "sortPriceDesc": "Price: high to low",
+    "sortName": "Name",
+    "inStockOnly": "In stock only",
+    "categories": {
+      "bags": "Bags",
+      "lights": "Lights",
+      "racks": "Racks",
+      "covers": "Covers"
+    }
   },
   "product": {
     "addToCart": "Add to cart",
