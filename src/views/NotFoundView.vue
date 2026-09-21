@@ -1,8 +1,8 @@
 <template>
   <section class="placeholder">
-    <h1>Page not found</h1>
+    <h1>{{ $t('placeholder.notFoundTitle') }}</h1>
     <p>
-      <router-link :to="{ name: 'catalog' }">Back to catalog</router-link>
+      <router-link :to="{ name: 'catalog' }">{{ $t('placeholder.notFoundBack') }}</router-link>
     </p>
   </section>
 </template>

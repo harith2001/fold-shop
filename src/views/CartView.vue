@@ -1,7 +1,7 @@
 <template>
   <section class="placeholder">
-    <h1>Cart</h1>
-    <p>Cart view lands in a later story.</p>
+    <h1>{{ $t('placeholder.cartTitle') }}</h1>
+    <p>{{ $t('placeholder.cartBody') }}</p>
   </section>
 </template>
 

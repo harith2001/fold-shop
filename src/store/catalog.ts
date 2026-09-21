@@ -51,7 +51,7 @@ const catalog: Module<CatalogState, RootState> = {
         const items = await fetchAllProducts();
         commit('SET_ITEMS', items);
       } catch {
-        commit('SET_ERROR', 'Could not load the catalog.');
+        commit('SET_ERROR', 'errors.CATALOG_LOAD');
       } finally {
         commit('SET_LOADING', false);
       }
@@ -64,7 +64,7 @@ const catalog: Module<CatalogState, RootState> = {
         commit('SET_ITEMS', upsertProduct(state.items, product));
         commit('SET_ACTIVE', id);
       } catch {
-        commit('SET_ERROR', 'Could not load the catalog.');
+        commit('SET_ERROR', 'errors.CATALOG_LOAD');
       } finally {
         commit('SET_LOADING', false);
       }

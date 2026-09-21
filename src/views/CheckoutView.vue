@@ -1,7 +1,7 @@
 <template>
   <section class="placeholder">
-    <h1>Checkout</h1>
-    <p>Checkout lands in a later story.</p>
+    <h1>{{ $t('placeholder.checkoutTitle') }}</h1>
+    <p>{{ $t('placeholder.checkoutBody') }}</p>
   </section>
 </template>
 

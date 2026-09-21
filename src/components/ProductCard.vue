@@ -1,22 +1,24 @@
 <template>
   <article class="card">
     <router-link class="card__media" :to="{ name: 'product', params: { id: String(product.id) } }">
-      <img class="card__image" :src="product.image" :alt="displayName" />
+      <img class="card__image" :src="product.image" :alt="$t(product.nameKey)" />
     </router-link>
     <div class="card__body">
       <h2 class="card__title">
         <router-link :to="{ name: 'product', params: { id: String(product.id) } }">
-          {{ displayName }}
+          {{ $t(product.nameKey) }}
         </router-link>
       </h2>
-      <p class="card__price">{{ priceLabel }}</p>
+      <p class="card__price">
+        <PriceTag :cents="priceCents" :locale="locale" :currency="currency" />
+      </p>
       <button
         class="card__add"
         type="button"
         :disabled="product.stock < 1"
         @click="$emit('add', product)"
       >
-        {{ product.stock < 1 ? 'Out of stock' : 'Add to cart' }}
+        {{ product.stock < 1 ? $t('product.outOfStock') : $t('product.addToCart') }}
       </button>
     </div>
   </article>
@@ -24,11 +26,15 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { formatCents } from '@/domain/money';
-import type { Product } from '@/domain/types';
+import { mapGetters } from 'vuex';
+import PriceTag from '@/components/PriceTag.vue';
+import type { CurrencyCode, Product } from '@/domain/types';
 
 export default Vue.extend({
   name: 'ProductCard',
+  components: {
+    PriceTag
+  },
   props: {
     product: {
       type: Object as PropType<Product>,
@@ -36,11 +42,9 @@ export default Vue.extend({
     }
   },
   computed: {
-    displayName(): string {
-      return this.product.sku;
-    },
-    priceLabel(): string {
-      return formatCents(this.product.prices.GBP, 'en-GB', 'GBP');
+    ...mapGetters('ui', ['locale', 'currency']),
+    priceCents(): number {
+      return this.product.prices[this.$store.getters['ui/currency'] as CurrencyCode];
     }
   }
 });

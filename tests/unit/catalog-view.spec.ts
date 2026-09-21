@@ -1,10 +1,12 @@
 import Vuex, { Store } from 'vuex';
+import VueI18n from 'vue-i18n';
 import { createLocalVue, mount } from '@vue/test-utils';
 import { fetchAll } from '@/api/products';
 import catalog from '@/store/catalog';
 import type { CatalogState } from '@/store/catalog';
 import type { Product } from '@/domain/types';
 import CatalogView from '@/views/CatalogView.vue';
+import enGB from '@/i18n/en-GB.json';
 
 jest.mock('@/api/products');
 
@@ -12,6 +14,7 @@ const mockFetchAll = fetchAll as jest.MockedFunction<typeof fetchAll>;
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+localVue.use(VueI18n);
 
 const sampleProduct: Product = {
   id: 1,
@@ -36,6 +39,25 @@ function createStore(): Store<RootState> {
   });
 }
 
+function createI18n(): VueI18n {
+  return new VueI18n({
+    locale: 'en-GB',
+    fallbackLocale: 'en-GB',
+    messages: {
+      'en-GB': enGB as VueI18n.LocaleMessageObject
+    }
+  });
+}
+
+function mountCatalog(store: Store<RootState>) {
+  return mount(CatalogView, {
+    localVue,
+    store,
+    i18n: createI18n(),
+    stubs: { ProductList: true }
+  });
+}
+
 function flushPromises(): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, 0);
@@ -52,11 +74,7 @@ describe('CatalogView', () => {
     const store = createStore();
     const dispatch = jest.spyOn(store, 'dispatch');
 
-    mount(CatalogView, {
-      localVue,
-      store,
-      stubs: { ProductList: true }
-    });
+    mountCatalog(store);
 
     expect(dispatch).toHaveBeenCalledWith('catalog/fetchAll');
   });
@@ -65,11 +83,7 @@ describe('CatalogView', () => {
     mockFetchAll.mockReturnValue(new Promise(() => undefined));
     const store = createStore();
 
-    const wrapper = mount(CatalogView, {
-      localVue,
-      store,
-      stubs: { ProductList: true }
-    });
+    const wrapper = mountCatalog(store);
     await wrapper.vm.$nextTick();
 
     expect(wrapper.text()).toContain('Loading…');
@@ -80,11 +94,7 @@ describe('CatalogView', () => {
     mockFetchAll.mockRejectedValue(new Error('Request failed with status code 404'));
     const store = createStore();
 
-    const wrapper = mount(CatalogView, {
-      localVue,
-      store,
-      stubs: { ProductList: true }
-    });
+    const wrapper = mountCatalog(store);
     await flushPromises();
     await wrapper.vm.$nextTick();
 
@@ -96,11 +106,7 @@ describe('CatalogView', () => {
     mockFetchAll.mockResolvedValue([sampleProduct]);
     const store = createStore();
 
-    const wrapper = mount(CatalogView, {
-      localVue,
-      store,
-      stubs: { ProductList: true }
-    });
+    const wrapper = mountCatalog(store);
     await flushPromises();
     await wrapper.vm.$nextTick();
 

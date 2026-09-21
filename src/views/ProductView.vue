@@ -1,7 +1,7 @@
 <template>
   <section class="placeholder">
-    <h1>Product {{ id }}</h1>
-    <p>Product detail lands in a later story.</p>
+    <h1>{{ $t('placeholder.productTitle', { id }) }}</h1>
+    <p>{{ $t('placeholder.productBody') }}</p>
   </section>
 </template>
 

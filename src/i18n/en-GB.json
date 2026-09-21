@@ -1,0 +1,95 @@
+{
+  "catalog": {
+    "title": "Catalog",
+    "empty": "No products found.",
+    "loading": "Loading…"
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock"
+  },
+  "cart": {
+    "empty": "Your cart is empty.",
+    "remove": "Remove",
+    "itemsCount": "{n} item | {n} items"
+  },
+  "checkout": {
+    "pay": "Pay",
+    "paying": "Paying…"
+  },
+  "errors": {
+    "OUT_OF_STOCK": "That item is out of stock.",
+    "PRICE_MISMATCH": "A price changed. Review your cart and try again.",
+    "PAYMENT_FAILED": "Payment failed. Your cart is unchanged.",
+    "CATALOG_LOAD": "Could not load the catalog."
+  },
+  "header": {
+    "logo": "Fold Shop",
+    "nav": "Primary",
+    "market": "Market"
+  },
+  "nav": {
+    "catalog": "Catalog",
+    "cart": "Cart"
+  },
+  "markets": {
+    "GB": "United Kingdom",
+    "NL": "Netherlands"
+  },
+  "placeholder": {
+    "productTitle": "Product {id}",
+    "productBody": "Product detail lands in a later story.",
+    "cartTitle": "Cart",
+    "cartBody": "Cart view lands in a later story.",
+    "checkoutTitle": "Checkout",
+    "checkoutBody": "Checkout lands in a later story.",
+    "orderSuccessTitle": "Order {orderId}",
+    "orderSuccessBody": "Order success lands in a later story.",
+    "orderFailedTitle": "Order failed",
+    "orderFailedBody": "Failure handling lands in a later story.",
+    "notFoundTitle": "Page not found",
+    "notFoundBack": "Back to catalog"
+  },
+  "products": {
+    "fold-bag-01": {
+      "name": "City pannier",
+      "description": "A compact pannier for daily folding-bike runs."
+    },
+    "fold-bag-02": {
+      "name": "Touring pannier",
+      "description": "A larger pannier when you need more capacity."
+    },
+    "light-front": {
+      "name": "Front light",
+      "description": "A bright front light for night rides."
+    },
+    "light-rear": {
+      "name": "Rear light",
+      "description": "A rear light to stay visible in traffic."
+    },
+    "rack-rear": {
+      "name": "Rear rack",
+      "description": "A rear rack for bags and extras."
+    },
+    "cover-night": {
+      "name": "Night cover",
+      "description": "A cover that keeps the bike dry overnight."
+    },
+    "cover-rain": {
+      "name": "Rain cover",
+      "description": "A waterproof cover for wet weather."
+    },
+    "light-set": {
+      "name": "Light set",
+      "description": "Front and rear lights as a pair."
+    },
+    "bag-mini": {
+      "name": "Mini bag",
+      "description": "A small bag for keys and a lock."
+    },
+    "rack-front": {
+      "name": "Front rack",
+      "description": "A front rack for a compact load."
+    }
+  }
+}

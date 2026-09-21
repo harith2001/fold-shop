@@ -153,7 +153,7 @@ describe('catalog module', () => {
 
       expect(store.state.catalog.items).toEqual(existing);
       expect(store.state.catalog.loading).toBe(false);
-      expect(store.state.catalog.error).toBe('Could not load the catalog.');
+      expect(store.state.catalog.error).toBe('errors.CATALOG_LOAD');
     });
   });
 
@@ -210,7 +210,7 @@ describe('catalog module', () => {
 
       expect(store.state.catalog.activeId).toBe(3);
       expect(store.state.catalog.items).toEqual([seedCatalog[0]]);
-      expect(store.state.catalog.error).toBe('Could not load the catalog.');
+      expect(store.state.catalog.error).toBe('errors.CATALOG_LOAD');
       expect(store.state.catalog.loading).toBe(false);
     });
   });

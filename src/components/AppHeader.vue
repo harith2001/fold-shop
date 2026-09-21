@@ -1,18 +1,27 @@
 <template>
   <header class="header">
-    <router-link class="header__logo" :to="{ name: 'catalog' }">Fold Shop</router-link>
-    <nav class="header__nav" aria-label="Primary">
-      <router-link class="header__link" :to="{ name: 'catalog' }">Catalog</router-link>
-      <router-link class="header__link" :to="{ name: 'cart' }">Cart</router-link>
+    <router-link class="header__logo" :to="{ name: 'catalog' }">{{
+      $t('header.logo')
+    }}</router-link>
+    <nav class="header__nav" :aria-label="$t('header.nav')">
+      <router-link class="header__link" :to="{ name: 'catalog' }">{{
+        $t('nav.catalog')
+      }}</router-link>
+      <router-link class="header__link" :to="{ name: 'cart' }">{{ $t('nav.cart') }}</router-link>
+      <MarketSwitcher />
     </nav>
   </header>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import MarketSwitcher from '@/components/MarketSwitcher.vue';
 
 export default Vue.extend({
-  name: 'AppHeader'
+  name: 'AppHeader',
+  components: {
+    MarketSwitcher
+  }
 });
 </script>
 

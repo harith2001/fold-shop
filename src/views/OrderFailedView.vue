@@ -1,7 +1,7 @@
 <template>
   <section class="placeholder">
-    <h1>Order failed</h1>
-    <p>Failure handling lands in a later story.</p>
+    <h1>{{ $t('placeholder.orderFailedTitle') }}</h1>
+    <p>{{ $t('placeholder.orderFailedBody') }}</p>
   </section>
 </template>
 

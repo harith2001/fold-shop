@@ -1,0 +1,96 @@
+{
+  "_comment": "Dutch is interview-demo quality.",
+  "catalog": {
+    "title": "Catalogus",
+    "empty": "Geen producten gevonden.",
+    "loading": "Laden…"
+  },
+  "product": {
+    "addToCart": "In winkelwagen",
+    "outOfStock": "Niet op voorraad"
+  },
+  "cart": {
+    "empty": "Je winkelwagen is leeg.",
+    "remove": "Verwijderen",
+    "itemsCount": "{n} artikel | {n} artikelen"
+  },
+  "checkout": {
+    "pay": "Betalen",
+    "paying": "Bezig met betalen…"
+  },
+  "errors": {
+    "OUT_OF_STOCK": "Dit artikel is niet op voorraad.",
+    "PRICE_MISMATCH": "Een prijs is gewijzigd. Controleer je winkelwagen en probeer opnieuw.",
+    "PAYMENT_FAILED": "Betaling mislukt. Je winkelwagen is ongewijzigd.",
+    "CATALOG_LOAD": "Catalogus kon niet worden geladen."
+  },
+  "header": {
+    "logo": "Fold Shop",
+    "nav": "Hoofdnavigatie",
+    "market": "Markt"
+  },
+  "nav": {
+    "catalog": "Catalogus",
+    "cart": "Winkelwagen"
+  },
+  "markets": {
+    "GB": "Verenigd Koninkrijk",
+    "NL": "Nederland"
+  },
+  "placeholder": {
+    "productTitle": "Product {id}",
+    "productBody": "Productdetail komt in een later verhaal.",
+    "cartTitle": "Winkelwagen",
+    "cartBody": "Winkelwagenweergave komt in een later verhaal.",
+    "checkoutTitle": "Afrekenen",
+    "checkoutBody": "Afrekenen komt in een later verhaal.",
+    "orderSuccessTitle": "Bestelling {orderId}",
+    "orderSuccessBody": "Ordersucces komt in een later verhaal.",
+    "orderFailedTitle": "Bestelling mislukt",
+    "orderFailedBody": "Foutafhandeling komt in een later verhaal.",
+    "notFoundTitle": "Pagina niet gevonden",
+    "notFoundBack": "Terug naar catalogus"
+  },
+  "products": {
+    "fold-bag-01": {
+      "name": "Stadsfietstas",
+      "description": "Een compacte tas voor dagelijkse ritten op de vouwfiets."
+    },
+    "fold-bag-02": {
+      "name": "Toerfiets tas",
+      "description": "Een grotere tas als je meer ruimte nodig hebt."
+    },
+    "light-front": {
+      "name": "Voorlicht",
+      "description": "Een fel voorlicht voor ritten in het donker."
+    },
+    "light-rear": {
+      "name": "Achterlicht",
+      "description": "Een achterlicht om zichtbaar te blijven."
+    },
+    "rack-rear": {
+      "name": "Achterrek",
+      "description": "Een achterrek voor tassen en extra spullen."
+    },
+    "cover-night": {
+      "name": "Nachtcover",
+      "description": "Een hoes die de fiets 's nachts droog houdt."
+    },
+    "cover-rain": {
+      "name": "Regenhoes",
+      "description": "Een waterdichte hoes voor nat weer."
+    },
+    "light-set": {
+      "name": "Verlichtingsset",
+      "description": "Voor- en achterlicht als set."
+    },
+    "bag-mini": {
+      "name": "Mini-tas",
+      "description": "Een kleine tas voor sleutels en een slot."
+    },
+    "rack-front": {
+      "name": "Voorrek",
+      "description": "Een voorrek voor een compacte lading."
+    }
+  }
+}

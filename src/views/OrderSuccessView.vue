@@ -1,7 +1,7 @@
 <template>
   <section class="placeholder">
-    <h1>Order {{ orderId }}</h1>
-    <p>Order success lands in a later story.</p>
+    <h1>{{ $t('placeholder.orderSuccessTitle', { orderId }) }}</h1>
+    <p>{{ $t('placeholder.orderSuccessBody') }}</p>
   </section>
 </template>
 

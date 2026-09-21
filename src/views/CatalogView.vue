@@ -1,9 +1,11 @@
 <template>
   <section class="catalog">
-    <h1 class="catalog__title">Catalog</h1>
-    <p v-if="loading" class="catalog__status">Loading…</p>
-    <p v-else-if="error" class="catalog__status catalog__status--error" role="alert">{{ error }}</p>
-    <p v-else-if="products.length === 0" class="catalog__status">No products found.</p>
+    <h1 class="catalog__title">{{ $t('catalog.title') }}</h1>
+    <p v-if="loading" class="catalog__status">{{ $t('catalog.loading') }}</p>
+    <p v-else-if="error" class="catalog__status catalog__status--error" role="alert">
+      {{ $t(error) }}
+    </p>
+    <p v-else-if="products.length === 0" class="catalog__status">{{ $t('catalog.empty') }}</p>
     <ProductList v-else :products="products" @add="onAdd" />
   </section>
 </template>
